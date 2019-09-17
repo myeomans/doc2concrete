@@ -1,11 +1,27 @@
 Package: doc2concrete
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Measuring Concreteness in Natural Language
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Mike Yeomans
+Maintainer: Mike Yeomans <myeomans@hbs.edu>
+Description: Compiles existing word-level concreteness measure (Brysbaert, Warriner & Kumerman, 2014) to produce domain-general document-level concreteness scores.
+    Additionally, this package offers a pre-trained model for detecting concreteness in natural language from advice/feedback domains. 
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Depends: R (>= 2.10)
+Imports:
+    tm,
+    quanteda,
+    ggplot2,
+    parallel,
+    glmnet,
+    stringr,
+    dplyr,
+    english,
+    textstem
+RoxygenNote: 6.1.1
+Suggests: knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr

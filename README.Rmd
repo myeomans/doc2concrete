@@ -1,0 +1,26 @@
+---
+  output: github_document
+---
+
+  <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+  ```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# Concreteness
+
+Concreteness has long been central to psychological theories of learning and thinking, and increasingly has practical applications to domains with prevalent natural language data, like advice and plan-making. However, the literature provides diffuse and competing definitions of concreteness in natural language. In this package, we codify simple guidelines for automated concreteness detection within and across domains, developed from a review of existing methods in the literature.
+
+## Installation
+
+You can install the doc2concrete package directly, like so:
+
+```{r gh-installation, eval = FALSE}
+devtools::install_github("myeomans/doc2concrete")
+```
+
