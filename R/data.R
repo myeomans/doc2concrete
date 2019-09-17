@@ -3,6 +3,7 @@
 #' Word list from Brysbaert, Warriner & Kuperman (2014)
 #'
 #' @format A list of 39,954 words that have been hand-annotated for concreteness
+#' @source Brysbaert, M., Warriner, A. B., & Kuperman, V. (2014). Concreteness ratings for 40 thousand generally known English word lemmas. Behavior Research Methods, 46(3), 904-911.
 #'
 "mturk_list"
 
@@ -11,6 +12,7 @@
 #' Word list from Paetzlod & Specia (2017)
 #'
 #' @format A list of 85,942 words where concreteness was imputed using word embeddings
+#' @source #' Paetzold, G., & Specia, L. (2016, June). Inferring psycholinguistic properties of words. In Proceedings of the 2016 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (pp. 435-440).
 #'
 "bootstrap_list"
 

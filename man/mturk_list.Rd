@@ -5,6 +5,9 @@
 \alias{mturk_list}
 \title{Concreteness mTurk Word List}
 \format{A list of 39,954 words that have been hand-annotated for concreteness}
+\source{
+Brysbaert, M., Warriner, A. B., & Kuperman, V. (2014). Concreteness ratings for 40 thousand generally known English word lemmas. Behavior Research Methods, 46(3), 904-911.
+}
 \usage{
 mturk_list
 }

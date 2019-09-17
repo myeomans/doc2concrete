@@ -5,6 +5,9 @@
 \alias{bootstrap_list}
 \title{Concreteness mTurk Word List}
 \format{A list of 85,942 words where concreteness was imputed using word embeddings}
+\source{
+#' Paetzold, G., & Specia, L. (2016, June). Inferring psycholinguistic properties of words. In Proceedings of the 2016 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (pp. 435-440).
+}
 \usage{
 bootstrap_list
 }
