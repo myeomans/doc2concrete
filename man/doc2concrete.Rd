@@ -4,7 +4,7 @@
 \alias{doc2concrete}
 \title{Concreteness Scores}
 \usage{
-doc2concrete(texts, domain = c("advice", "open"), stop.words = TRUE,
+doc2concrete(texts, domain = c("open", "advice"), stop.words = TRUE,
   number.words = TRUE, shrink = TRUE, length = TRUE)
 }
 \arguments{

@@ -46,7 +46,7 @@ utils::globalVariables(c("mturk_list")) # prevent incorrect "no global binding" 
 #'
 #'@export
 
-doc2concrete<-function(texts, domain=c("advice","open"),
+doc2concrete<-function(texts, domain=c("open","advice"),
                        stop.words=TRUE, number.words=TRUE,
                        shrink=TRUE, length=TRUE){
   texts<-iconv(texts,to="ASCII",sub=" ")
