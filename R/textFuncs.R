@@ -4,7 +4,7 @@
 #' @param wordlist dictionary to be used
 #' @param stop.words logical should stop words be kept? default is TRUE
 #' @param number.words logical should numbers be converted to words? default is TRUE
-#' @param min.words numeric all documents with less words than this return NA. default is 0 (i.e. keep all documents)
+#' @param minwords numeric all documents with less words than this return NA. default is 0 (i.e. keep all documents)
 #' @return variance-weighted log odds ratio of prevalence across samples
 #' @keywords internal
 word_list<-function (text, wordlist=NULL, stop.words=TRUE, number.words=TRUE,minwords = 0){
