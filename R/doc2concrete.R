@@ -75,7 +75,7 @@ doc2concrete<-function(texts, domain=c("open","advice"),
       conc=B*conc+(1-B)*mean(cMeans,na.rm=T)
     }
 
-    if(length(conc)>1) conc<-as.numeric(scale(conc))
+    conc<-as.numeric(conc)
     conctable=data.frame(words=stringr::str_count(texts,"[[:alpha:]]+"),
                          hits=cHits,
                          concrete=conc)
