@@ -6,8 +6,8 @@ utils::globalVariables(c("mturk_list")) # prevent incorrect "no global binding" 
 #'     This function is the workhorse of the \code{doc2concrete} package, taking an N-length vector of text documents and returning an N-length vector of concreteness scores.
 #' @param texts character A vector of texts, each of which will be tallied for concreteness.
 #' @param domain character Indicates the domain from wihch the text data was collected (see details).
-#' @param stop.words logical should stop words be kept? default is TRUE
-#' @param number.words logical should numbers be converted to words? default is TRUE
+#' @param stop.words logical Should stop words be kept? default is TRUE
+#' @param number.words logical Should numbers be converted to words? default is TRUE
 #' @param shrink logical Should open-domain concreteness models regularize low-count words? Default is TRUE.
 #' @param length logical Should open-domain concreteness models treat document length as a feature of concreteness? Default is TRUE
 #' @details In principle, concreteness could be measured from any english text. However, the
@@ -53,7 +53,8 @@ doc2concrete<-function(texts, domain=c("open","advice"),
   texts[is.na(texts) | texts==""] <- "   "
 
   if(domain[1]=="advice"){
-    stop("functionality in progress...")
+    message("functionality in progress...")
+    return(NA)
   } else {
     textstem=textstem::lemmatize_words(texts)
     ctx<-quanteda::dfm(textstem, remove=ifelse(stop.words,"",tm::stopwords()))
