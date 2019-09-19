@@ -9,7 +9,6 @@ utils::globalVariables(c("mturk_list")) # prevent incorrect "no global binding" 
 #' @param stop.words logical Should stop words be kept? default is TRUE
 #' @param number.words logical Should numbers be converted to words? default is TRUE
 #' @param shrink logical Should open-domain concreteness models regularize low-count words? Default is TRUE.
-#' @param length logical Should open-domain concreteness models treat document length as a feature of concreteness? Default is TRUE
 #' @details In principle, concreteness could be measured from any english text. However, the
 #' definition and interpretation of concreteness may vary based on the domain. Here, we provide
 #' a domain-specific pre-trained classifier for concreteness in advice & feedback data, which we have
@@ -48,7 +47,7 @@ utils::globalVariables(c("mturk_list")) # prevent incorrect "no global binding" 
 
 doc2concrete<-function(texts, domain=c("open","advice"),
                        stop.words=TRUE, number.words=TRUE,
-                       shrink=TRUE, length=TRUE){
+                       shrink=TRUE){
   texts<-iconv(texts,to="ASCII",sub=" ")
   texts[is.na(texts) | texts==""] <- "   "
 
