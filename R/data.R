@@ -48,7 +48,7 @@
 
 #' Pre-trained concreteness features
 #'
-#' @format A matrix of ngram feature counts for the pre-trained glmnet model
+#' @format A (truncated) matrix of ngram feature counts for alignment to the pre-trained glmnet model.
 #' @source Yeomans (2019). Concreteness, Concretely.
 #'
-"dtmSet"
+"ngramList"

@@ -1,4 +1,4 @@
-utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","dtmSet")) # prevent incorrect "no global binding" note
+utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","ngramList")) # prevent incorrect "no global binding" note
 
 #' Concreteness Scores
 #'
@@ -54,7 +54,7 @@ doc2concrete<-function(texts, domain=c("open","advice"),
   texts[is.na(texts) | texts==""] <- "   "
 
   if(domain[1]=="advice"){
-    testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3, stop.words = T, vocabmatch = dtmSet),
+    testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3, stop.words = T, vocabmatch = ngramList),
                            data.frame(bootC=concDict(texts=texts,
                                                      wordlist=bootstrap_list,
                                                      shrink=shrink,
