@@ -34,3 +34,21 @@
 #' Academy of Management Proceedings, 2018.
 #'
 "feedback_dat"
+
+#' Pre=trained Concreteness Detection Model for Advice
+#'
+#' Trained on advice datasets
+#'
+#' @format A pre-trained glmnet model
+#' @source Yeomans (2019). Concreteness, Concretely.
+#'
+"adviceModel"
+
+
+
+#' Pre-trained concreteness features
+#'
+#' @format A matrix of ngram feature counts for the pre-trained glmnet model
+#' @source Yeomans (2019). Concreteness, Concretely.
+#'
+"dtmSet"

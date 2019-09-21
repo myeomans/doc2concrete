@@ -1,7 +1,7 @@
 Package: doc2concrete
 Type: Package
 Title: Measuring Concreteness in Natural Language
-Version: 0.1.2
+Version: 0.3.2
 Author: Mike Yeomans
 Maintainer: Mike Yeomans <myeomans@hbs.edu>
 Description: Compiles existing word-level concreteness measure (Brysbaert, Warriner & Kumerman, 2014) to produce domain-general document-level concreteness scores.
@@ -19,7 +19,8 @@ Imports:
     stringr,
     dplyr,
     english,
-    textstem
+    textstem,
+    SnowballC
 RoxygenNote: 6.1.1
 Suggests: knitr,
     rmarkdown,

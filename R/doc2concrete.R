@@ -1,4 +1,4 @@
-utils::globalVariables(c("mturk_list")) # prevent incorrect "no global binding" note
+utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","dtmSet")) # prevent incorrect "no global binding" note
 
 #' Concreteness Scores
 #'
@@ -6,6 +6,7 @@ utils::globalVariables(c("mturk_list")) # prevent incorrect "no global binding" 
 #'     This function is the workhorse of the \code{doc2concrete} package, taking an N-length vector of text documents and returning an N-length vector of concreteness scores.
 #' @param texts character A vector of texts, each of which will be tallied for concreteness.
 #' @param domain character Indicates the domain from wihch the text data was collected (see details).
+#' @param wordlist Dictionary to be used. Default is the Brysbaert et al. (2014) list.
 #' @param stop.words logical Should stop words be kept? default is TRUE
 #' @param number.words logical Should numbers be converted to words? default is TRUE
 #' @param shrink logical Should open-domain concreteness models regularize low-count words? Default is TRUE.
@@ -46,41 +47,34 @@ utils::globalVariables(c("mturk_list")) # prevent incorrect "no global binding" 
 #'@export
 
 doc2concrete<-function(texts, domain=c("open","advice"),
+                       wordlist=mturk_list,
                        stop.words=TRUE, number.words=TRUE,
                        shrink=TRUE){
   texts<-iconv(texts,to="ASCII",sub=" ")
   texts[is.na(texts) | texts==""] <- "   "
 
   if(domain[1]=="advice"){
-    message("functionality in progress...")
-    return(NA)
+    testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3, stop.words = T, vocabmatch = dtmSet),
+                           data.frame(bootC=concDict(texts=texts,
+                                                     wordlist=bootstrap_list,
+                                                     shrink=shrink,
+                                                     stop.words=stop.words,
+                                                     number.words=number.words),
+                                      brysC=concDict(texts=texts,
+                                                     wordlist=mturk_list,
+                                                     shrink=shrink,
+                                                     stop.words=stop.words,
+                                                     number.words=number.words))))
+    conc<-glmnet::predict.cv.glmnet(adviceModel, newx = testX,
+                                    s="lambda.min", type="response")
+
   } else {
-    textstem=textstem::lemmatize_words(texts)
-    ctx<-quanteda::dfm(textstem, remove=ifelse(stop.words,"",tm::stopwords()))
-
-    concList<-parallel::mclapply(texts,word_list, wordlist=mturk_list,
-                                 stop.words=stop.words,
-                                 number.words=number.words,
-                                 mc.cores=parallel::detectCores())
-
-    cMeans<-unlist(lapply(concList,function(x) x$values))
-    cHits<-unlist(lapply(concList,function(x) x$hits))
-
-    conc<- dplyr::case_when(
-      !is.na(cMeans) ~ cMeans,
-      T ~ mean(cMeans,na.rm=T)
-    )
-    if(shrink){
-      B=cHits/(5+cHits)
-      conc=B*conc+(1-B)*mean(cMeans,na.rm=T)
-    }
-
-    conc<-as.numeric(conc)
-    conctable=data.frame(words=stringr::str_count(texts,"[[:alpha:]]+"),
-                         hits=cHits,
-                         concrete=conc)
-    c.scores=conctable$concrete
+    conc=concDict(texts=texts,
+                  wordlist=wordlist,
+                  shrink=shrink,
+                  stop.words=stop.words,
+                  number.words=number.words)
   }
-  return(c.scores)
+  return(conc)
 }
 ###############################################################

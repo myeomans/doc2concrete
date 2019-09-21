@@ -4,21 +4,22 @@
 \alias{doc2concrete}
 \title{Concreteness Scores}
 \usage{
-doc2concrete(texts, domain = c("open", "advice"), stop.words = TRUE,
-  number.words = TRUE, shrink = TRUE, length = TRUE)
+doc2concrete(texts, domain = c("open", "advice"),
+  wordlist = mturk_list, stop.words = TRUE, number.words = TRUE,
+  shrink = TRUE)
 }
 \arguments{
 \item{texts}{character A vector of texts, each of which will be tallied for concreteness.}
 
 \item{domain}{character Indicates the domain from wihch the text data was collected (see details).}
 
-\item{stop.words}{logical should stop words be kept? default is TRUE}
+\item{wordlist}{Dictionary to be used. Default is the Brysbaert et al. (2014) list.}
 
-\item{number.words}{logical should numbers be converted to words? default is TRUE}
+\item{stop.words}{logical Should stop words be kept? default is TRUE}
+
+\item{number.words}{logical Should numbers be converted to words? default is TRUE}
 
 \item{shrink}{logical Should open-domain concreteness models regularize low-count words? Default is TRUE.}
-
-\item{length}{logical Should open-domain concreteness models treat document length as a feature of concreteness? Default is TRUE}
 }
 \value{
 A vector of concreteness scores, with one value for every item in `text`.
