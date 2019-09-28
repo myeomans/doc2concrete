@@ -4,7 +4,7 @@
 \alias{doc2concrete}
 \title{Concreteness Scores}
 \usage{
-doc2concrete(texts, domain = c("open", "advice"),
+doc2concrete(texts, domain = c("open", "advice", "plans"),
   wordlist = mturk_list, stop.words = TRUE, number.words = TRUE,
   shrink = TRUE)
 }

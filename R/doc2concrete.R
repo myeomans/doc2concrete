@@ -1,4 +1,4 @@
-utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","ngramList")) # prevent incorrect "no global binding" note
+utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","adviceNgrams","planModel","planNgrams")) # prevent incorrect "no global binding" note
 
 #' Concreteness Scores
 #'
@@ -46,7 +46,7 @@ utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","ngramList"
 #'
 #'@export
 
-doc2concrete<-function(texts, domain=c("open","advice"),
+doc2concrete<-function(texts, domain=c("open","advice","plans"),
                        wordlist=mturk_list,
                        stop.words=TRUE, number.words=TRUE,
                        shrink=TRUE){
@@ -54,7 +54,7 @@ doc2concrete<-function(texts, domain=c("open","advice"),
   texts[is.na(texts) | texts==""] <- "   "
 
   if(domain[1]=="advice"){
-    testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3, stop.words = T, vocabmatch = ngramList),
+    testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3, stop.words = T, vocabmatch = adviceNgrams),
                            data.frame(bootC=concDict(texts=texts,
                                                      wordlist=bootstrap_list,
                                                      shrink=shrink,
@@ -67,7 +67,20 @@ doc2concrete<-function(texts, domain=c("open","advice"),
                                                      number.words=number.words))))
     conc<-glmnet::predict.cv.glmnet(adviceModel, newx = testX,
                                     s="lambda.min", type="response")
-
+  } else if (domain[1]=="plans"){
+    testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3, stop.words = T, vocabmatch = planNgrams),
+                           data.frame(bootC=concDict(texts=texts,
+                                                     wordlist=bootstrap_list,
+                                                     shrink=shrink,
+                                                     stop.words=stop.words,
+                                                     number.words=number.words),
+                                      brysC=concDict(texts=texts,
+                                                     wordlist=mturk_list,
+                                                     shrink=shrink,
+                                                     stop.words=stop.words,
+                                                     number.words=number.words))))
+    conc<-glmnet::predict.cv.glmnet(planModel, newx = testX,
+                                    s="lambda.min", type="response")
   } else {
     conc=concDict(texts=texts,
                   wordlist=wordlist,

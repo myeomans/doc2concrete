@@ -44,11 +44,27 @@
 #'
 "adviceModel"
 
-
-
-#' Pre-trained concreteness features
+#' Pre=trained Concreteness Detection Model for Plan-Making
 #'
-#' @format A (truncated) matrix of ngram feature counts for alignment to the pre-trained glmnet model.
+#' Trained on planning datasets
+#'
+#' @format A pre-trained glmnet model
 #' @source Yeomans (2019). Concreteness, Concretely.
 #'
-"ngramList"
+"planModel"
+
+
+#' Pre-trained advice concreteness features
+#'
+#' @format A (truncated) matrix of ngram feature counts for alignment to the pre-trained advice glmnet model.
+#' @source Yeomans (2019). Concreteness, Concretely.
+#'
+"adviceNgrams"
+
+
+#' Pre-trained plan concreteness features
+#'
+#' @format A (truncated) matrix of ngram feature counts for alignment to the pre-trained planning glmnet model.
+#' @source Yeomans (2019). Concreteness, Concretely.
+#'
+"planNgrams"
