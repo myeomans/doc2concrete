@@ -9,7 +9,7 @@ utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","adviceNgra
 #' @param wordlist Dictionary to be used. Default is the Brysbaert et al. (2014) list.
 #' @param stop.words logical Should stop words be kept? default is TRUE
 #' @param number.words logical Should numbers be converted to words? default is TRUE
-#' @param shrink logical Should open-domain concreteness models regularize low-count words? Default is TRUE.
+#' @param shrink logical Should open-domain concreteness models regularize low-count words? Default is FALSE.
 #' @details In principle, concreteness could be measured from any english text. However, the
 #' definition and interpretation of concreteness may vary based on the domain. Here, we provide
 #' a domain-specific pre-trained classifier for concreteness in advice & feedback data, which we have
@@ -47,43 +47,45 @@ utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","adviceNgra
 #'@export
 
 doc2concrete<-function(texts, domain=c("open","advice","plans"),
-                       wordlist=mturk_list,
+                       wordlist=NULL,
                        stop.words=TRUE, number.words=TRUE,
-                       shrink=TRUE){
+                       shrink=FALSE){
   texts<-iconv(texts,to="ASCII",sub=" ")
   texts[is.na(texts) | texts==""] <- "   "
 
   if(domain[1]=="advice"){
-    testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3, stop.words = T, vocabmatch = adviceNgrams),
+    testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3, stop.words = T,
+                                       vocabmatch = doc2concrete::adviceNgrams),
                            data.frame(bootC=concDict(texts=texts,
-                                                     wordlist=bootstrap_list,
+                                                     wordlist=doc2concrete::bootstrap_list,
                                                      shrink=shrink,
                                                      stop.words=stop.words,
                                                      number.words=number.words),
                                       brysC=concDict(texts=texts,
-                                                     wordlist=mturk_list,
+                                                     wordlist=doc2concrete::mturk_list,
                                                      shrink=shrink,
                                                      stop.words=stop.words,
                                                      number.words=number.words))))
-    conc<-glmnet::predict.cv.glmnet(adviceModel, newx = testX,
+    conc<-glmnet::predict.cv.glmnet(doc2concrete::adviceModel, newx = testX,
                                     s="lambda.min", type="response")
   } else if (domain[1]=="plans"){
-    testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3, stop.words = T, vocabmatch = planNgrams),
+    testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3, stop.words = T,
+                                       vocabmatch = doc2concrete::planNgrams),
                            data.frame(bootC=concDict(texts=texts,
-                                                     wordlist=bootstrap_list,
+                                                     wordlist=doc2concrete::bootstrap_list,
                                                      shrink=shrink,
                                                      stop.words=stop.words,
                                                      number.words=number.words),
                                       brysC=concDict(texts=texts,
-                                                     wordlist=mturk_list,
+                                                     wordlist=doc2concrete::mturk_list,
                                                      shrink=shrink,
                                                      stop.words=stop.words,
                                                      number.words=number.words))))
-    conc<-glmnet::predict.cv.glmnet(planModel, newx = testX,
+    conc<-glmnet::predict.cv.glmnet(doc2concrete::planModel, newx = testX,
                                     s="lambda.min", type="response")
   } else {
     conc=concDict(texts=texts,
-                  wordlist=wordlist,
+                  wordlist=doc2concrete::mturk_list,
                   shrink=shrink,
                   stop.words=stop.words,
                   number.words=number.words)

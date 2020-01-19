@@ -1,11 +1,10 @@
 Package: doc2concrete
 Type: Package
 Title: Measuring Concreteness in Natural Language
-Version: 0.3.5
+Version: 0.3.1
 Author: Mike Yeomans
 Maintainer: Mike Yeomans <myeomans@hbs.edu>
-Description: Compiles existing word-level concreteness measure (Brysbaert, Warriner & Kumerman, 2014) to produce domain-general document-level concreteness scores.
-    Additionally, this package offers a pre-trained model for detecting concreteness in natural language from advice/feedback domains. 
+Description: Models for detecting concreteness in natural language.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

@@ -4,7 +4,7 @@
 \alias{concDict}
 \title{Open-Domain Concreteness Dictionaries}
 \usage{
-concDict(texts, wordlist, shrink = TRUE, stop.words = TRUE,
+concDict(texts, wordlist = NULL, shrink = TRUE, stop.words = TRUE,
   number.words = TRUE, minwords = 0)
 }
 \arguments{

@@ -8,8 +8,10 @@
 #' @param minwords numeric all documents with less words than this return NA. default is 0 (i.e. keep all documents)
 #' @return variance-weighted log odds ratio of prevalence across samples
 #' @keywords internal
-concDict<-function (texts, wordlist, shrink=TRUE, stop.words=TRUE, number.words=TRUE,minwords = 0){
-
+concDict<-function (texts, wordlist=NULL, shrink=TRUE, stop.words=TRUE, number.words=TRUE,minwords = 0){
+  if(is.null(wordlist)){
+    wordlist <- doc2concrete::mturk_list
+  }
   textstem=textstem::lemmatize_words(texts)
   ctx<-quanteda::dfm(textstem, remove=ifelse(stop.words,"",tm::stopwords()))
 

@@ -5,8 +5,8 @@
 \title{Concreteness Scores}
 \usage{
 doc2concrete(texts, domain = c("open", "advice", "plans"),
-  wordlist = mturk_list, stop.words = TRUE, number.words = TRUE,
-  shrink = TRUE)
+  wordlist = NULL, stop.words = TRUE, number.words = TRUE,
+  shrink = FALSE)
 }
 \arguments{
 \item{texts}{character A vector of texts, each of which will be tallied for concreteness.}
@@ -19,7 +19,7 @@ doc2concrete(texts, domain = c("open", "advice", "plans"),
 
 \item{number.words}{logical Should numbers be converted to words? default is TRUE}
 
-\item{shrink}{logical Should open-domain concreteness models regularize low-count words? Default is TRUE.}
+\item{shrink}{logical Should open-domain concreteness models regularize low-count words? Default is FALSE.}
 }
 \value{
 A vector of concreteness scores, with one value for every item in `text`.
