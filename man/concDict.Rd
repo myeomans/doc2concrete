@@ -4,13 +4,13 @@
 \alias{concDict}
 \title{Open-Domain Concreteness Dictionaries}
 \usage{
-concDict(texts, wordlist = NULL, shrink = TRUE, stop.words = TRUE,
+concDict(texts, wordlist = NULL, shrink = FALSE, stop.words = TRUE,
   number.words = TRUE, minwords = 0)
 }
 \arguments{
 \item{wordlist}{Dictionary to be used.}
 
-\item{shrink}{logical should scores on shorter documents be regularized? default is TRUE#'}
+\item{shrink}{logical should scores on shorter documents be regularized? default is FALSE}
 
 \item{stop.words}{logical should stop words be kept? default is TRUE}
 
