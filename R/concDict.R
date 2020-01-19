@@ -2,13 +2,13 @@
 #' @description background function to load
 #' @param text character Vector of documents to classify
 #' @param wordlist Dictionary to be used.
-#' @param shrink logical should scores on shorter documents be regularized? default is TRUE#'
+#' @param shrink logical should scores on shorter documents be regularized? default is FALSE
 #' @param stop.words logical should stop words be kept? default is TRUE
 #' @param number.words logical should numbers be converted to words? default is TRUE
 #' @param minwords numeric all documents with less words than this return NA. default is 0 (i.e. keep all documents)
 #' @return variance-weighted log odds ratio of prevalence across samples
 #' @keywords internal
-concDict<-function (texts, wordlist=NULL, shrink=TRUE, stop.words=TRUE, number.words=TRUE,minwords = 0){
+concDict<-function (texts, wordlist=NULL, shrink=FALSE, stop.words=TRUE, number.words=TRUE,minwords = 0){
   if(is.null(wordlist)){
     wordlist <- doc2concrete::mturk_list
   }
