@@ -1,7 +1,7 @@
 Package: doc2concrete
 Type: Package
 Title: Measuring Concreteness in Natural Language
-Version: 0.3.1
+Version: 0.3.2
 Author: Mike Yeomans
 Maintainer: Mike Yeomans <myeomans@hbs.edu>
 Description: Models for detecting concreteness in natural language.
@@ -20,7 +20,7 @@ Imports:
     english,
     textstem,
     SnowballC
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Suggests: knitr,
     rmarkdown,
     testthat

@@ -4,9 +4,18 @@
 \alias{ngramTokens}
 \title{Ngram Tokenizer}
 \usage{
-ngramTokens(texts, wstem = "all", ngrams = 1, language = "english",
-  punct = TRUE, stop.words = TRUE, overlap = 1, sparse = 0.99,
-  verbose = FALSE, vocabmatch = NULL)
+ngramTokens(
+  texts,
+  wstem = "all",
+  ngrams = 1,
+  language = "english",
+  punct = TRUE,
+  stop.words = TRUE,
+  overlap = 1,
+  sparse = 0.99,
+  verbose = FALSE,
+  vocabmatch = NULL
+)
 }
 \arguments{
 \item{texts}{character vector of texts.}

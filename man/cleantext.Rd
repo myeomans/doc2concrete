@@ -4,8 +4,13 @@
 \alias{cleantext}
 \title{Text Cleaner}
 \usage{
-cleantext(text, language = "english", punct = FALSE,
-  stop.words = TRUE, number.words = TRUE)
+cleantext(
+  text,
+  language = "english",
+  punct = FALSE,
+  stop.words = TRUE,
+  number.words = TRUE
+)
 }
 \arguments{
 \item{text}{character Vector of strings to clean.}

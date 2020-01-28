@@ -1,11 +1,11 @@
-utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","adviceNgrams","planModel","planNgrams")) # prevent incorrect "no global binding" note
+utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","adviceNgrams","planModel","planNgrams","predict")) # prevent incorrect "no global binding" note
 
 #' Concreteness Scores
 #'
-#' @description Detects linguistic markers of politeness in natural language.
-#'     This function is the workhorse of the \code{doc2concrete} package, taking an N-length vector of text documents and returning an N-length vector of concreteness scores.
+#' @description Detects linguistic markers of concreteness in natural language.
+#'     This function is the workhorse of the \code{doc2concrete} package, taking a vector of text documents and returning an equal-length vector of concreteness scores.
 #' @param texts character A vector of texts, each of which will be tallied for concreteness.
-#' @param domain character Indicates the domain from wihch the text data was collected (see details).
+#' @param domain character Indicates the domain from which the text data was collected (see details).
 #' @param wordlist Dictionary to be used. Default is the Brysbaert et al. (2014) list.
 #' @param stop.words logical Should stop words be kept? default is TRUE
 #' @param number.words logical Should numbers be converted to words? default is TRUE
@@ -66,8 +66,8 @@ doc2concrete<-function(texts, domain=c("open","advice","plans"),
                                                      shrink=shrink,
                                                      stop.words=stop.words,
                                                      number.words=number.words))))
-    conc<-glmnet::predict.cv.glmnet(doc2concrete::adviceModel, newx = testX,
-                                    s="lambda.min", type="response")
+    conc<-predict(doc2concrete::adviceModel, newx = testX,
+                  s="lambda.min", type="response")
   } else if (domain[1]=="plans"){
     testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3, stop.words = T,
                                        vocabmatch = doc2concrete::planNgrams),
@@ -81,8 +81,8 @@ doc2concrete<-function(texts, domain=c("open","advice","plans"),
                                                      shrink=shrink,
                                                      stop.words=stop.words,
                                                      number.words=number.words))))
-    conc<-glmnet::predict.cv.glmnet(doc2concrete::planModel, newx = testX,
-                                    s="lambda.min", type="response")
+    conc<-predict(doc2concrete::planModel, newx = testX,
+                  s="lambda.min", type="response")
   } else {
     conc=concDict(texts=texts,
                   wordlist=doc2concrete::mturk_list,

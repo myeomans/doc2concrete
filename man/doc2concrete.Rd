@@ -4,14 +4,19 @@
 \alias{doc2concrete}
 \title{Concreteness Scores}
 \usage{
-doc2concrete(texts, domain = c("open", "advice", "plans"),
-  wordlist = NULL, stop.words = TRUE, number.words = TRUE,
-  shrink = FALSE)
+doc2concrete(
+  texts,
+  domain = c("open", "advice", "plans"),
+  wordlist = NULL,
+  stop.words = TRUE,
+  number.words = TRUE,
+  shrink = FALSE
+)
 }
 \arguments{
 \item{texts}{character A vector of texts, each of which will be tallied for concreteness.}
 
-\item{domain}{character Indicates the domain from wihch the text data was collected (see details).}
+\item{domain}{character Indicates the domain from which the text data was collected (see details).}
 
 \item{wordlist}{Dictionary to be used. Default is the Brysbaert et al. (2014) list.}
 
@@ -25,8 +30,8 @@ doc2concrete(texts, domain = c("open", "advice", "plans"),
 A vector of concreteness scores, with one value for every item in `text`.
 }
 \description{
-Detects linguistic markers of politeness in natural language.
-    This function is the workhorse of the \code{doc2concrete} package, taking an N-length vector of text documents and returning an N-length vector of concreteness scores.
+Detects linguistic markers of concreteness in natural language.
+    This function is the workhorse of the \code{doc2concrete} package, taking a vector of text documents and returning an equal-length vector of concreteness scores.
 }
 \details{
 In principle, concreteness could be measured from any english text. However, the

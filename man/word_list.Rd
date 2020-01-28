@@ -4,8 +4,13 @@
 \alias{word_list}
 \title{Word List Counter}
 \usage{
-word_list(text, wordlist = NULL, stop.words = TRUE,
-  number.words = TRUE, minwords = 0)
+word_list(
+  text,
+  wordlist = NULL,
+  stop.words = TRUE,
+  number.words = TRUE,
+  minwords = 0
+)
 }
 \arguments{
 \item{text}{character string (i.e. document to classify)}

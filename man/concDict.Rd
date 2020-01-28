@@ -4,8 +4,14 @@
 \alias{concDict}
 \title{Open-Domain Concreteness Dictionaries}
 \usage{
-concDict(texts, wordlist = NULL, shrink = FALSE, stop.words = TRUE,
-  number.words = TRUE, minwords = 0)
+concDict(
+  texts,
+  wordlist = NULL,
+  shrink = FALSE,
+  stop.words = TRUE,
+  number.words = TRUE,
+  minwords = 0
+)
 }
 \arguments{
 \item{wordlist}{Dictionary to be used.}
