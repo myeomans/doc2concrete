@@ -9,7 +9,8 @@ utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","adviceNgra
 #' @param wordlist Dictionary to be used. Default is the Brysbaert et al. (2014) list.
 #' @param stop.words logical Should stop words be kept? default is TRUE
 #' @param number.words logical Should numbers be converted to words? default is TRUE
-#' @param shrink logical Should open-domain concreteness models regularize low-count words? Default is FALSE.
+#' @param shrink logical Should open-domain concreteness models regularize low-count words? default is FALSE.
+#' @param num.mc.cores numeric number of cores for parallel processing - see parallel::detectCores()
 #' @details In principle, concreteness could be measured from any english text. However, the
 #' definition and interpretation of concreteness may vary based on the domain. Here, we provide
 #' a domain-specific pre-trained classifier for concreteness in advice & feedback data, which we have
@@ -49,13 +50,15 @@ utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","adviceNgra
 doc2concrete<-function(texts, domain=c("open","advice","plans"),
                        wordlist=NULL,
                        stop.words=TRUE, number.words=TRUE,
-                       shrink=FALSE){
+                       shrink=FALSE,
+                       num.mc.cores=1){
   texts<-iconv(texts,to="ASCII",sub=" ")
   texts[is.na(texts) | texts==""] <- "   "
 
   if(domain[1]=="advice"){
     testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3, stop.words = T,
-                                       vocabmatch = doc2concrete::adviceNgrams),
+                                       vocabmatch = doc2concrete::adviceNgrams,
+                                       num.mc.cores=num.mc.cores),
                            data.frame(bootC=concDict(texts=texts,
                                                      wordlist=doc2concrete::bootstrap_list,
                                                      shrink=shrink,
@@ -70,7 +73,8 @@ doc2concrete<-function(texts, domain=c("open","advice","plans"),
                   s="lambda.min", type="response")[,1]
   } else if (domain[1]=="plans"){
     testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3, stop.words = T,
-                                       vocabmatch = doc2concrete::planNgrams),
+                                       vocabmatch = doc2concrete::planNgrams,
+                                       num.mc.cores=num.mc.cores),
                            data.frame(bootC=concDict(texts=texts,
                                                      wordlist=doc2concrete::bootstrap_list,
                                                      shrink=shrink,
