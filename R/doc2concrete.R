@@ -66,7 +66,7 @@ doc2concrete<-function(texts, domain=c("open","advice","plans"),
                                                      shrink=shrink,
                                                      stop.words=stop.words,
                                                      number.words=number.words))))
-    conc<-predict.cv.glmnet(doc2concrete::adviceModel, newx = testX,
+    conc<-stats::predict(doc2concrete::adviceModel, newx = testX,
                   s="lambda.min", type="response")[,1]
   } else if (domain[1]=="plans"){
     testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3, stop.words = T,
@@ -81,7 +81,7 @@ doc2concrete<-function(texts, domain=c("open","advice","plans"),
                                                      shrink=shrink,
                                                      stop.words=stop.words,
                                                      number.words=number.words))))
-    conc<-predict.cv.glmnet(doc2concrete::planModel, newx = testX,
+    conc<-stats::predict(doc2concrete::planModel, newx = testX,
                   s="lambda.min", type="response")[,1]
   } else {
     conc=concDict(texts=texts,
