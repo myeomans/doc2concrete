@@ -10,7 +10,8 @@ concDict(
   shrink = FALSE,
   stop.words = TRUE,
   number.words = TRUE,
-  minwords = 0
+  minwords = 0,
+  num.mc.cores = 1
 )
 }
 \arguments{
@@ -23,6 +24,8 @@ concDict(
 \item{number.words}{logical should numbers be converted to words? default is TRUE}
 
 \item{minwords}{numeric all documents with less words than this return NA. default is 0 (i.e. keep all documents)}
+
+\item{num.mc.cores}{numeric number of cores for parallel processing - see parallel::detectCores()}
 
 \item{text}{character Vector of documents to classify}
 }

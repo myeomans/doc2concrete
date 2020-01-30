@@ -10,7 +10,8 @@ doc2concrete(
   wordlist = NULL,
   stop.words = TRUE,
   number.words = TRUE,
-  shrink = FALSE
+  shrink = FALSE,
+  num.mc.cores = 1
 )
 }
 \arguments{
@@ -20,11 +21,13 @@ doc2concrete(
 
 \item{wordlist}{Dictionary to be used. Default is the Brysbaert et al. (2014) list.}
 
-\item{stop.words}{logical Should stop words be kept? default is TRUE}
+\item{stop.words}{logical Should stop words be kept? Default is TRUE}
 
-\item{number.words}{logical Should numbers be converted to words? default is TRUE}
+\item{number.words}{logical Should numbers be converted to words? Default is TRUE}
 
 \item{shrink}{logical Should open-domain concreteness models regularize low-count words? Default is FALSE.}
+
+\item{num.mc.cores}{numeric number of cores for parallel processing - see parallel::detectCores(). Default is 1.}
 }
 \value{
 A vector of concreteness scores, with one value for every item in `text`.
@@ -37,7 +40,7 @@ Detects linguistic markers of concreteness in natural language.
 In principle, concreteness could be measured from any english text. However, the
 definition and interpretation of concreteness may vary based on the domain. Here, we provide
 a domain-specific pre-trained classifier for concreteness in advice & feedback data, which we have
-empirically confirmed to be robust across a variety of contexts within that domain (Yeomans, 2019).
+empirically confirmed to be robust across a variety of contexts within that domain (Yeomans, 2020).
 
 There are many domains where such pre-training is not yet possible. Accordingly, we provide
 support for two off-the-shelf concreteness "dictionaries" - i.e. document-level aggregations of
@@ -62,7 +65,7 @@ cor(doc2concrete(feedback_dat$feedback, domain="open"),feedback_dat$concrete)
 
 }
 \references{
-Yeomans, M. (2019). Concreteness, Concretely. Working Paper.
+Yeomans, M. (2020). Concreteness, Concretely. Working Paper.
 
 Brysbaert, M., Warriner, A. B., & Kuperman, V. (2014). Concreteness ratings for 40 thousand generally known English word lemmas. Behavior Research Methods, 46(3), 904-911.
 

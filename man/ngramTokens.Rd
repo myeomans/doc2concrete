@@ -14,7 +14,8 @@ ngramTokens(
   overlap = 1,
   sparse = 0.99,
   verbose = FALSE,
-  vocabmatch = NULL
+  vocabmatch = NULL,
+  num.mc.cores = 1
 )
 }
 \arguments{

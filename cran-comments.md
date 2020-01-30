@@ -13,8 +13,7 @@ authors (year) <arXiv:...>
 authors (year, ISBN:...)
 with no space after 'doi:', 'arXiv:' and angle brackets for auto-linking.
 
-RESPONSE No. 1: Thank you for this suggestion. We have added more description relevant to the paper.
-
+RESPONSE No. 1: Thank you for this suggestion. We have added more descriptions relevant to the functionality, as well as references to the two most relevant papers.
 
 No. 2: Your examples are wrapped in \dontrun{}, hence nothing gets tested.
 Please unwrap the examples if that is feasible and if they can be

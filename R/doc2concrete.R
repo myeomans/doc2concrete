@@ -45,6 +45,7 @@ utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","adviceNgra
 #'
 #'}
 #'
+#'@import glmnet
 #'@export
 
 doc2concrete<-function(texts, domain=c("open","advice","plans"),
