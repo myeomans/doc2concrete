@@ -1,4 +1,4 @@
-utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","adviceNgrams","planModel","planNgrams","predict")) # prevent incorrect "no global binding" note
+utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","adviceNgrams","planModel","planNgrams")) # prevent incorrect "no global binding" note
 
 #' Concreteness Scores
 #'
@@ -21,7 +21,7 @@ utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","adviceNgra
 #' However, we still encourage researchers to train a model of concreteness in their own domain, if possible.
 #'
 #' @references
-#' Yeomans, M. (2019). Concreteness, Concretely. Working Paper.
+#' Yeomans, M. (2020). Concreteness, Concretely. Working Paper.
 #'
 #' Brysbaert, M., Warriner, A. B., & Kuperman, V. (2014). Concreteness ratings for 40 thousand generally known English word lemmas. Behavior Research Methods, 46(3), 904-911.
 #'
@@ -66,8 +66,8 @@ doc2concrete<-function(texts, domain=c("open","advice","plans"),
                                                      shrink=shrink,
                                                      stop.words=stop.words,
                                                      number.words=number.words))))
-    conc<-predict(doc2concrete::adviceModel, newx = testX,
-                  s="lambda.min", type="response")
+    conc<-predict.cv.glmnet(doc2concrete::adviceModel, newx = testX,
+                  s="lambda.min", type="response")[,1]
   } else if (domain[1]=="plans"){
     testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3, stop.words = T,
                                        vocabmatch = doc2concrete::planNgrams),
@@ -81,8 +81,8 @@ doc2concrete<-function(texts, domain=c("open","advice","plans"),
                                                      shrink=shrink,
                                                      stop.words=stop.words,
                                                      number.words=number.words))))
-    conc<-predict(doc2concrete::planModel, newx = testX,
-                  s="lambda.min", type="response")
+    conc<-predict.cv.glmnet(doc2concrete::planModel, newx = testX,
+                  s="lambda.min", type="response")[,1]
   } else {
     conc=concDict(texts=texts,
                   wordlist=doc2concrete::mturk_list,
