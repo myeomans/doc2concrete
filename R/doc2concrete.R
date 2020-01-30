@@ -63,12 +63,14 @@ doc2concrete<-function(texts, domain=c("open","advice","plans"),
                                                      wordlist=doc2concrete::bootstrap_list,
                                                      shrink=shrink,
                                                      stop.words=stop.words,
-                                                     number.words=number.words),
+                                                     number.words=number.words,
+                                                     num.mc.cores=num.mc.cores),
                                       brysC=concDict(texts=texts,
                                                      wordlist=doc2concrete::mturk_list,
                                                      shrink=shrink,
                                                      stop.words=stop.words,
-                                                     number.words=number.words))))
+                                                     number.words=number.words,
+                                                     num.mc.cores=num.mc.cores))))
     conc<-stats::predict(doc2concrete::adviceModel, newx = testX,
                   s="lambda.min", type="response")[,1]
   } else if (domain[1]=="plans"){
@@ -79,12 +81,14 @@ doc2concrete<-function(texts, domain=c("open","advice","plans"),
                                                      wordlist=doc2concrete::bootstrap_list,
                                                      shrink=shrink,
                                                      stop.words=stop.words,
-                                                     number.words=number.words),
+                                                     number.words=number.words,
+                                                     num.mc.cores=num.mc.cores),
                                       brysC=concDict(texts=texts,
                                                      wordlist=doc2concrete::mturk_list,
                                                      shrink=shrink,
                                                      stop.words=stop.words,
-                                                     number.words=number.words))))
+                                                     number.words=number.words,
+                                                     num.mc.cores=num.mc.cores))))
     conc<-stats::predict(doc2concrete::planModel, newx = testX,
                   s="lambda.min", type="response")[,1]
   } else {
@@ -92,7 +96,8 @@ doc2concrete<-function(texts, domain=c("open","advice","plans"),
                   wordlist=doc2concrete::mturk_list,
                   shrink=shrink,
                   stop.words=stop.words,
-                  number.words=number.words)
+                  number.words=number.words,
+                  num.mc.cores=num.mc.cores)
   }
   return(conc)
 }

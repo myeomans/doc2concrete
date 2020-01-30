@@ -6,9 +6,12 @@
 #' @param stop.words logical should stop words be kept? default is TRUE
 #' @param number.words logical should numbers be converted to words? default is TRUE
 #' @param minwords numeric all documents with less words than this return NA. default is 0 (i.e. keep all documents)
+#' @param num.mc.cores numeric number of cores for parallel processing - see parallel::detectCores()
 #' @return variance-weighted log odds ratio of prevalence across samples
 #' @keywords internal
-concDict<-function (texts, wordlist=NULL, shrink=FALSE, stop.words=TRUE, number.words=TRUE,minwords = 0){
+concDict<-function (texts, wordlist=NULL, shrink=FALSE,
+                    stop.words=TRUE, number.words=TRUE,
+                    minwords = 0, num.mc.cores=1){
   if(is.null(wordlist)){
     wordlist <- doc2concrete::mturk_list
   }
@@ -18,7 +21,7 @@ concDict<-function (texts, wordlist=NULL, shrink=FALSE, stop.words=TRUE, number.
   concList<-parallel::mclapply(texts,word_list, wordlist=wordlist,
                                stop.words=stop.words,
                                number.words=number.words,
-                               mc.cores=parallel::detectCores())
+                               mc.cores=1)
 
   cMeans<-unlist(lapply(concList,function(x) x$values))
   cHits<-unlist(lapply(concList,function(x) x$hits))
