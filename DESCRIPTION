@@ -1,7 +1,7 @@
 Package: doc2concrete
 Type: Package
 Title: Measuring Concreteness in Natural Language
-Version: 0.3.1
+Version: 0.3.4
 Author: Mike Yeomans
 Maintainer: Mike Yeomans <myeomans@hbs.edu>
 Description: Models for detecting concreteness in natural language.
