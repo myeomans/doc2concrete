@@ -1,8 +1,8 @@
 ## Version Update (0.4.3)
 
-This is our third re-submission. We have made substantial changes, based on the previous reviewer's feedback. They provided three helpful points, which we responde to below:
+This is our third re-submission. We have made substantial changes, based on the previous reviewer's feedback. We group their responses into three substantial and helpful suggestions, and we respond to each in line below:
 
-1. Please add more details about the package functionality in your
+No. 1: Please add more details about the package functionality in your
 Description text.
 
 If there are references describing the (theoretical background of)
@@ -13,10 +13,10 @@ authors (year) <arXiv:...>
 authors (year, ISBN:...)
 with no space after 'doi:', 'arXiv:' and angle brackets for auto-linking.
 
-RESPONSE:
+RESPONSE No. 1: Thank you for this suggestion. We have added more description relevant to the paper.
 
 
-2. Your examples are wrapped in \dontrun{}, hence nothing gets tested.
+No. 2: Your examples are wrapped in \dontrun{}, hence nothing gets tested.
 Please unwrap the examples if that is feasible and if they can be
 executed in < 5 sec for each Rd file or create additionally small toy
 examples. Something like
@@ -37,9 +37,9 @@ examples. Something like
 }
 would be desirable.
 
-RESPONSE:
+RESPONSE No. 2:
 
-3. Please ensure that you do not use more than 2 cores in your examples.
+No. 3: Please ensure that you do not use more than 2 cores in your examples.
 
 Please ensure that your examples are executable.  We get:
 
@@ -48,7 +48,7 @@ Error in parallel::mclapply(texts, word_list, wordlist = wordlist,
 stop.words = stop.words,  :
    'mc.cores' > 1 is not supported on Windows
 
-RESPONSE:
+RESPONSE No. 3: Thank you for this suggestion. We have made the number of cores adjustable, with a default of 1, so that all examples work smoothly.
 
 ## Version Update (0.4.1)
 

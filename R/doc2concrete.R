@@ -7,14 +7,14 @@ utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","adviceNgra
 #' @param texts character A vector of texts, each of which will be tallied for concreteness.
 #' @param domain character Indicates the domain from which the text data was collected (see details).
 #' @param wordlist Dictionary to be used. Default is the Brysbaert et al. (2014) list.
-#' @param stop.words logical Should stop words be kept? default is TRUE
-#' @param number.words logical Should numbers be converted to words? default is TRUE
-#' @param shrink logical Should open-domain concreteness models regularize low-count words? default is FALSE.
-#' @param num.mc.cores numeric number of cores for parallel processing - see parallel::detectCores()
+#' @param stop.words logical Should stop words be kept? Default is TRUE
+#' @param number.words logical Should numbers be converted to words? Default is TRUE
+#' @param shrink logical Should open-domain concreteness models regularize low-count words? Default is FALSE.
+#' @param num.mc.cores numeric number of cores for parallel processing - see parallel::detectCores(). Default is 1.
 #' @details In principle, concreteness could be measured from any english text. However, the
 #' definition and interpretation of concreteness may vary based on the domain. Here, we provide
 #' a domain-specific pre-trained classifier for concreteness in advice & feedback data, which we have
-#' empirically confirmed to be robust across a variety of contexts within that domain (Yeomans, 2019).
+#' empirically confirmed to be robust across a variety of contexts within that domain (Yeomans, 2020).
 #'
 #' There are many domains where such pre-training is not yet possible. Accordingly, we provide
 #' support for two off-the-shelf concreteness "dictionaries" - i.e. document-level aggregations of
