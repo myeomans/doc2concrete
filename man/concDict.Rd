@@ -7,9 +7,10 @@
 concDict(
   texts,
   wordlist = NULL,
-  shrink = FALSE,
   stop.words = TRUE,
   number.words = TRUE,
+  shrink = FALSE,
+  fill = FALSE,
   minwords = 0,
   num.mc.cores = 1
 )
@@ -17,11 +18,13 @@ concDict(
 \arguments{
 \item{wordlist}{Dictionary to be used.}
 
-\item{shrink}{logical should scores on shorter documents be regularized? default is FALSE}
-
 \item{stop.words}{logical should stop words be kept? default is TRUE}
 
 \item{number.words}{logical should numbers be converted to words? default is TRUE}
+
+\item{shrink}{logical should scores on shorter documents be regularized? default is FALSE}
+
+\item{fill}{logical Should empty cells be assigned the mean rating? Default is TRUE.}
 
 \item{minwords}{numeric all documents with less words than this return NA. default is 0 (i.e. keep all documents)}
 

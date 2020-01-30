@@ -36,7 +36,7 @@ examples. Something like
 }
 would be desirable.
 
-RESPONSE No. 2:
+RESPONSE No. 2: We have overhauled our testing regime. Following your suggestion, our examples can run now (in part because of our adjustment to #3 below). Additionally, we have added some unit testing for the main functions. This spurred us to also change some of the defaults in the function and add more error handling (e.g. for empty strings) to the code base.
 
 No. 3: Please ensure that you do not use more than 2 cores in your examples.
 

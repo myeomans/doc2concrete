@@ -212,13 +212,16 @@ overlaps<-function(high, low, cutoff=1){
 #' @return Token count matrix with no doubled column names.
 #' @keywords internal
 doublestacker<-function (wdcts){
-  wdcts<-as.matrix(wdcts)
-  words<- colnames(wdcts)
-  for (Q in words[duplicated(words)]) {
-    wdcts[, (words== Q) & (!duplicated(words))] <- as.numeric(rowSums(wdcts[,(words== Q)]))
-    wdcts[, ((words== Q) & (duplicated(words)))] <- NA
+  if(ncol(wdcts)>1){
+    wdcts<-as.matrix(wdcts)
+    words<- colnames(wdcts)
+    for (Q in words[duplicated(words)]) {
+      wdcts[, (words== Q) & (!duplicated(words))] <- as.numeric(rowSums(wdcts[,(words== Q)]))
+      wdcts[, ((words== Q) & (duplicated(words)))] <- NA
+    }
+    wdcts<-wdcts[, !is.na(colMeans(wdcts))]
   }
-  return(wdcts[, !is.na(colMeans(wdcts))])
+  return(wdcts)
 }
 ############################################################################
 
@@ -229,7 +232,7 @@ doublestacker<-function (wdcts){
 #' @param peg matrix Token counts in new data.
 #' @return Token counts matrix from new data, with column names that match the model data.
 #' @keywords internal
-vocabmatch<-function(hole, peg){
+vocabmatcher<-function(hole, peg){
   peg<-doublestacker(peg)
   newpeg<-array(0, c(nrow(peg), ncol(hole)))
   for (i in 1:ncol(newpeg)){

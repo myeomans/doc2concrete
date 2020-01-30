@@ -11,6 +11,7 @@ doc2concrete(
   stop.words = TRUE,
   number.words = TRUE,
   shrink = FALSE,
+  fill = FALSE,
   num.mc.cores = 1
 )
 }
@@ -26,6 +27,8 @@ doc2concrete(
 \item{number.words}{logical Should numbers be converted to words? Default is TRUE}
 
 \item{shrink}{logical Should open-domain concreteness models regularize low-count words? Default is FALSE.}
+
+\item{fill}{logical Should empty cells be assigned the mean rating? Default is TRUE.}
 
 \item{num.mc.cores}{numeric number of cores for parallel processing - see parallel::detectCores(). Default is 1.}
 }
@@ -49,7 +52,6 @@ However, we still encourage researchers to train a model of concreteness in thei
 }
 \examples{
 
-\dontrun{
 
 data("feedback_dat")
 
@@ -59,9 +61,6 @@ hist(doc2concrete(feedback_dat$feedback, domain="open"))
 
 cor(doc2concrete(feedback_dat$feedback, domain="open"),feedback_dat$concrete)
 
-
-
-}
 
 }
 \references{

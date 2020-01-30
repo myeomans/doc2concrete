@@ -12,7 +12,6 @@ ngramTokens(
   punct = TRUE,
   stop.words = TRUE,
   overlap = 1,
-  sparse = 0.99,
   verbose = FALSE,
   vocabmatch = NULL,
   num.mc.cores = 1
@@ -32,8 +31,6 @@ ngramTokens(
 \item{stop.words}{logical Should stop words be kept? Default is TRUE}
 
 \item{overlap}{numeric Threshold (as cosine distance) for including ngrams that constitute other included phrases. Default is 1 (i.e. all ngrams included).}
-
-\item{sparse}{numeric Threshold (as percent sparsity) for keeping rare tokens. Default is .99 (i.e. keep all ngrams that appear in at least 1/100 texts).}
 
 \item{verbose}{logical Should the package report token counts after each ngram level? Useful for long-running code. Default is FALSE.}
 

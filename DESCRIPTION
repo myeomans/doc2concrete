@@ -1,7 +1,7 @@
 Package: doc2concrete
 Type: Package
 Title: Measuring Concreteness in Natural Language
-Version: 0.3.5
+Version: 0.3.6
 Author: Mike Yeomans
 Maintainer: Mike Yeomans <myeomans@hbs.edu>
 Description: Models for detecting concreteness in natural language. This package is built in support of Yeomans (2020) <doi:10.17605/OSF.IO/DYZN6>, which reviews linguistic models of concreteness in several domains. Here, we provide an implementation of the best-performing domain-general model (from Brysbaert et al., (2014)<doi:10.3758/s13428-013-0403-5>) as well as two pre-trained models for the feedback and plan-making domains.

@@ -10,6 +10,7 @@ utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","adviceNgra
 #' @param stop.words logical Should stop words be kept? Default is TRUE
 #' @param number.words logical Should numbers be converted to words? Default is TRUE
 #' @param shrink logical Should open-domain concreteness models regularize low-count words? Default is FALSE.
+#' @param fill logical Should empty cells be assigned the mean rating? Default is TRUE.
 #' @param num.mc.cores numeric number of cores for parallel processing - see parallel::detectCores(). Default is 1.
 #' @details In principle, concreteness could be measured from any english text. However, the
 #' definition and interpretation of concreteness may vary based on the domain. Here, we provide
@@ -31,7 +32,6 @@ utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","adviceNgra
 #' @return A vector of concreteness scores, with one value for every item in `text`.
 #' @examples
 #'
-#'\dontrun{
 #'
 #' data("feedback_dat")
 #'
@@ -42,35 +42,36 @@ utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","adviceNgra
 #' cor(doc2concrete(feedback_dat$feedback, domain="open"),feedback_dat$concrete)
 #'
 #'
-#'
-#'}
-#'
 #'@import glmnet
 #'@export
 
-doc2concrete<-function(texts, domain=c("open","advice","plans"),
+doc2concrete<-function(texts,
+                       domain=c("open","advice","plans"),
                        wordlist=NULL,
-                       stop.words=TRUE, number.words=TRUE,
+                       stop.words=TRUE,
+                       number.words=TRUE,
                        shrink=FALSE,
+                       fill=FALSE,
                        num.mc.cores=1){
   texts<-iconv(texts,to="ASCII",sub=" ")
-  texts[is.na(texts) | texts==""] <- "   "
+  texts[is.na(texts) | stringr::str_count(texts, "[[:alpha:]]+")==0] <- " .  "
 
   if(domain[1]=="advice"){
+
     testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3, stop.words = T,
                                        vocabmatch = doc2concrete::adviceNgrams,
                                        num.mc.cores=num.mc.cores),
                            data.frame(bootC=concDict(texts=texts,
                                                      wordlist=doc2concrete::bootstrap_list,
-                                                     shrink=shrink,
-                                                     stop.words=stop.words,
-                                                     number.words=number.words,
+                                                     shrink=FALSE,
+                                                     stop.words=TRUE,
+                                                     number.words=TRUE,
                                                      num.mc.cores=num.mc.cores),
                                       brysC=concDict(texts=texts,
                                                      wordlist=doc2concrete::mturk_list,
-                                                     shrink=shrink,
-                                                     stop.words=stop.words,
-                                                     number.words=number.words,
+                                                     shrink=FALSE,
+                                                     stop.words=TRUE,
+                                                     number.words=TRUE,
                                                      num.mc.cores=num.mc.cores))))
     conc<-stats::predict(doc2concrete::adviceModel, newx = testX,
                   s="lambda.min", type="response")[,1]
@@ -80,15 +81,15 @@ doc2concrete<-function(texts, domain=c("open","advice","plans"),
                                        num.mc.cores=num.mc.cores),
                            data.frame(bootC=concDict(texts=texts,
                                                      wordlist=doc2concrete::bootstrap_list,
-                                                     shrink=shrink,
-                                                     stop.words=stop.words,
-                                                     number.words=number.words,
+                                                     shrink=FALSE,
+                                                     stop.words=TRUE,
+                                                     number.words=TRUE,
                                                      num.mc.cores=num.mc.cores),
                                       brysC=concDict(texts=texts,
                                                      wordlist=doc2concrete::mturk_list,
-                                                     shrink=shrink,
-                                                     stop.words=stop.words,
-                                                     number.words=number.words,
+                                                     shrink=FALSE,
+                                                     stop.words=TRUE,
+                                                     number.words=TRUE,
                                                      num.mc.cores=num.mc.cores))))
     conc<-stats::predict(doc2concrete::planModel, newx = testX,
                   s="lambda.min", type="response")[,1]
@@ -96,6 +97,7 @@ doc2concrete<-function(texts, domain=c("open","advice","plans"),
     conc=concDict(texts=texts,
                   wordlist=doc2concrete::mturk_list,
                   shrink=shrink,
+                  fill=fill,
                   stop.words=stop.words,
                   number.words=number.words,
                   num.mc.cores=num.mc.cores)
