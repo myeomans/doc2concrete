@@ -58,6 +58,7 @@ doc2concrete(c("this is a brown rock.","this is a vague idea."),
 We have included an example dataset, `feedback_dat`, for researchers to get a handle on the workflow. These data were collected from Mechanical Turk workers, who were asked to think of a person in their life to whom they could give feedback on a recent task. Then, they were asked to write what feedback they would provide (Blunden, Green & Gino, 2018). The written feedback was shown to 5-6 raters (also mTurkers) who evaluated the specificity of the feedback, and the average of these raters is offered as a ground truth measure of concreteness.
 
 ```{r, eval=TRUE}
+
 data("feedback_dat")
 
 cor.test(doc2concrete(feedback_dat$feedback,domain="open"),
@@ -66,8 +67,12 @@ cor.test(doc2concrete(feedback_dat$feedback,domain="open"),
 cor.test(doc2concrete(feedback_dat$feedback,domain="advice"),
          feedback_dat$concrete)
 
-plot(doc2concrete(feedback_dat$feedback,domain="advice"),
-     doc2concrete(feedback_dat$feedback,domain="open"))
+
+doc2concrete(c("Be more concrete","Be more abstract"),
+             domain="advice")
+
+doc2concrete(c("Act like a brown rock.","Act like a vague idea."),
+             domain="advice")
 
 ```
 
@@ -81,4 +86,4 @@ Brysbaert, M., Warriner, A. B., & Kuperman, V. (2014). Concreteness ratings for 
 
 Blunden, H., Green, P., & Gino, F. (2018). The Impersonal Touch: Improving Feedback- Giving with Interpersonal Distance. Academy of Management Proceedings, 2018(1).
 
-Yeomans, M. (2019). Concreteness, Concretely. Working Paper.
+Yeomans, M. (2020). Concreteness, Concretely. Working Paper.
