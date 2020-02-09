@@ -9,8 +9,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, echo=FALSE}
-knitr::opts_chunk$set(comment = NA, echo=FALSE, message = FALSE, warning = FALSE)
+```{r echo=FALSE}
+knitr::opts_chunk$set(comment = NA, message = FALSE, warning = FALSE)
 ```
 
 
@@ -40,7 +40,7 @@ Although it is not ideal, researchers may have to rely on a domain-general model
 
 We offer a document-level implementation of the original Brysbaert dictionary, with some adjustments to the standard protocol. Previous practice commonly excluded documents with insufficient word counts, and produced skewed distributions (i.e. short documents had much higher variance). Instead, our package suggests smoothing, which calculates a weighted combination of each document's raw score and the group average, with the weight proportional to document length. This smoothing somewhat improved the accuracy of the model for concreteness in advice, and in plan-making. We suspect there may be other gains from fine-tuning the standard dictionary approach (for example, varying the weights on words) that should be explored in future research. 
 
-```{r eval=FALSE}
+```{r eval=TRUE}
 
 
 library(doc2concrete)
@@ -57,7 +57,7 @@ doc2concrete(c("this is a brown rock.","this is a vague idea."),
 
 We have included an example dataset, `feedback_dat`, for researchers to get a handle on the workflow. These data were collected from Mechanical Turk workers, who were asked to think of a person in their life to whom they could give feedback on a recent task. Then, they were asked to write what feedback they would provide (Blunden, Green & Gino, 2018). The written feedback was shown to 5-6 raters (also mTurkers) who evaluated the specificity of the feedback, and the average of these raters is offered as a ground truth measure of concreteness.
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 data("feedback_dat")
 
 cor.test(doc2concrete(feedback_dat$feedback,domain="open"),
@@ -66,8 +66,8 @@ cor.test(doc2concrete(feedback_dat$feedback,domain="open"),
 cor.test(doc2concrete(feedback_dat$feedback,domain="advice"),
          feedback_dat$concrete)
 
-cor.test(doc2concrete(feedback_dat$feedback,domain="plans"),
-         feedback_dat$concrete)
+plot(doc2concrete(feedback_dat$feedback,domain="advice"),
+     doc2concrete(feedback_dat$feedback,domain="open"))
 
 ```
 
