@@ -32,7 +32,7 @@ devtools::install_github("myeomans/doc2concrete")
 
 ### Domain-Specific Pre-Trained Concreteness Model
 
-First, we provide pre-trained models specifically tuned to measure concreteness in two open-ended goal pursuit domains - advice and plan-making. These were developed using supervised machine learning tools, and robustly outperform other domain-specific models. We trained the advice model across a range of datasets from lab and field settings (9 studies, 4,608 students), and we trained the plan-making model from plans students wrote at the beginning of online classes (7 classes, 5,172 students). Our package implements the best- performing supervised  models - the LASSO model with bag-of-ngrams and dictionary features - to calculate concreteness in a new set of in-domain texts.
+First, we provide pre-trained models specifically tuned to measure concreteness in two open-ended goal pursuit domains - advice and plan-making. These were developed using supervised machine learning tools, and robustly outperform other domain-specific models. We trained the advice model across a range of datasets from lab and field settings (9 studies, 4,608 participants), and we trained the plan-making model from plans students wrote at the beginning of online classes (7 classes, 5,172 students). Our package implements the best- performing supervised  models - the LASSO model with bag-of-ngrams and dictionary features - to calculate concreteness in a new set of in-domain texts.
 
 ### Domain-General Concreteness Dictionary
 
