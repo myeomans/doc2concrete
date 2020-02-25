@@ -53,7 +53,7 @@ doc2concrete<-function(texts,
                        shrink=FALSE,
                        fill=FALSE,
                        num.mc.cores=1){
-  texts<-iconv(texts,to="ASCII",sub=" ")
+  texts<-iconv(textclean::replace_non_ascii(texts),to="ASCII",sub=" ")
   texts[is.na(texts) | stringr::str_count(texts, "[[:alpha:]]+")==0] <- " .  "
 
   if(domain[1]=="advice"){
