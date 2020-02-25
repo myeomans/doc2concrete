@@ -1,4 +1,4 @@
-## Version Update (0.4.3)
+## Version Update (0.4.5)
 
 This is our third re-submission. We have made substantial changes, based on the previous reviewer's feedback. We group their responses into three substantial and helpful suggestions, and we respond to each in line below:
 
