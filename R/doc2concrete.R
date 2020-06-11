@@ -58,7 +58,7 @@ doc2concrete<-function(texts,
 
   if(domain[1]=="advice"){
 
-    testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3, stop.words = T,
+    testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3, stop.words = T,sparse=1,
                                        vocabmatch = doc2concrete::adviceNgrams,
                                        num.mc.cores=num.mc.cores),
                            data.frame(bootC=concDict(texts=texts,
@@ -76,7 +76,7 @@ doc2concrete<-function(texts,
     conc<-stats::predict(doc2concrete::adviceModel, newx = testX,
                   s="lambda.min", type="response")[,1]
   } else if (domain[1]=="plans"){
-    testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3, stop.words = T,
+    testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3, stop.words = T,sparse=1,
                                        vocabmatch = doc2concrete::planNgrams,
                                        num.mc.cores=num.mc.cores),
                            data.frame(bootC=concDict(texts=texts,

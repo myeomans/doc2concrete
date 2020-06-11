@@ -19,7 +19,7 @@ ngramTokens<-function(texts,
                       punct=TRUE,
                       stop.words=TRUE,
                       overlap=1,
-                      sparse=1,
+                      sparse=0.99,
                       verbose=FALSE,
                       vocabmatch=NULL,
                       num.mc.cores=1){
