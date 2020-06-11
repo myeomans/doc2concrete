@@ -4,7 +4,9 @@
 \name{planNgrams}
 \alias{planNgrams}
 \title{Pre-trained plan concreteness features}
-\format{A (truncated) matrix of ngram feature counts for alignment to the pre-trained planning glmnet model.}
+\format{
+A (truncated) matrix of ngram feature counts for alignment to the pre-trained planning glmnet model.
+}
 \source{
 Yeomans (2019). Concreteness, Concretely.
 }

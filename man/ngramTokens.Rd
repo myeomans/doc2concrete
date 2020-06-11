@@ -12,6 +12,7 @@ ngramTokens(
   punct = TRUE,
   stop.words = TRUE,
   overlap = 1,
+  sparse = 1,
   verbose = FALSE,
   vocabmatch = NULL,
   num.mc.cores = 1
@@ -31,6 +32,8 @@ ngramTokens(
 \item{stop.words}{logical Should stop words be kept? Default is TRUE}
 
 \item{overlap}{numeric Threshold (as cosine distance) for including ngrams that constitute other included phrases. Default is 1 (i.e. all ngrams included).}
+
+\item{sparse}{maximum feature sparsity for inclusion (1 = include all features)}
 
 \item{verbose}{logical Should the package report token counts after each ngram level? Useful for long-running code. Default is FALSE.}
 

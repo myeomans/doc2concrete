@@ -4,11 +4,13 @@
 \name{feedback_dat}
 \alias{feedback_dat}
 \title{Personal Feedback Dataset}
-\format{A data frame with 171 rows and 2 variables:
+\format{
+A data frame with 171 rows and 2 variables:
 \describe{
   \item{feedback}{character text of feedback from writers}
   \item{concrete}{numeric average specificity score from readers}
-}}
+}
+}
 \source{
 Blunden, H., Green, P., & Gino, F. (2018).
 

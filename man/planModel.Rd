@@ -4,7 +4,9 @@
 \name{planModel}
 \alias{planModel}
 \title{Pre=trained Concreteness Detection Model for Plan-Making}
-\format{A pre-trained glmnet model}
+\format{
+A pre-trained glmnet model
+}
 \source{
 Yeomans (2019). Concreteness, Concretely.
 }

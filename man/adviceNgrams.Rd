@@ -4,7 +4,9 @@
 \name{adviceNgrams}
 \alias{adviceNgrams}
 \title{Pre-trained advice concreteness features}
-\format{A (truncated) matrix of ngram feature counts for alignment to the pre-trained advice glmnet model.}
+\format{
+A (truncated) matrix of ngram feature counts for alignment to the pre-trained advice glmnet model.
+}
 \source{
 Yeomans (2019). Concreteness, Concretely.
 }

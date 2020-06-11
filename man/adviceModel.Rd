@@ -4,7 +4,9 @@
 \name{adviceModel}
 \alias{adviceModel}
 \title{Pre=trained Concreteness Detection Model for Advice}
-\format{A pre-trained glmnet model}
+\format{
+A pre-trained glmnet model
+}
 \source{
 Yeomans (2019). Concreteness, Concretely.
 }
