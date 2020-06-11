@@ -1,3 +1,22 @@
+## Version Update (0.4.6)
+
+This is our fourth re-submission. We have made substantial changes, based on the previous reviewer's feedback, and we respond to each in line below:
+
+No 1: Please add a space between year and doi.
+--> (2014) <doi:10.3758/s13428-013-0403-5>
+
+RESPONSE No 1:
+
+No 2: Please always write TRUE and FALSE instead of T and F.
+Also never name your variables T or F.
+
+RESPONSE No 2:
+
+No 3: Please document your datasets in more detail.
+
+RESPONSE No 3:
+
+
 ## Version Update (0.4.5)
 
 This is our third re-submission. We have made substantial changes, based on the previous reviewer's feedback. We group their responses into three substantial and helpful suggestions, and we respond to each in line below:
