@@ -24,7 +24,7 @@ concDict(
 
 \item{shrink}{logical should scores on shorter documents be regularized? default is FALSE}
 
-\item{fill}{logical Should empty cells be assigned the mean rating? Default is TRUE.}
+\item{fill}{logical Should empty cells be assigned the mean rating? Default is FALSE.}
 
 \item{minwords}{numeric all documents with less words than this return NA. default is 0 (i.e. keep all documents)}
 
@@ -33,7 +33,7 @@ concDict(
 \item{text}{character Vector of documents to classify}
 }
 \value{
-variance-weighted log odds ratio of prevalence across samples
+concreteness score for each document
 }
 \description{
 background function to load

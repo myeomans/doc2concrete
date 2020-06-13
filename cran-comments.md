@@ -16,6 +16,9 @@ No 3: Please document your datasets in more detail.
 
 RESPONSE No 3: I appreciate this suggestion. I've added more description by including text from the paper in the documentation here.
 
+No 4:  Examples with CPU (user + system) or elapsed time > 10s
+
+Based on this feedback, I went back through the code and significantly optimized the slowest parts. It now runs much faster, and the examples should all process quickly. 
 
 ## Version Update (0.4.5)
 

@@ -22,11 +22,10 @@ concDict<-function (texts, wordlist=NULL,
     wordlist <- doc2concrete::mturk_list
   }
 
+  ctext<-unlist(lapply(texts, cleantext, stop.words=stop.words, number.words=number.words))
+
+  qtd<-quanteda::dfm(ctext,tolower=TRUE)
   wordlist$Word<-tolower(wordlist$Word)
-
-  ctext<-unlist(lapply(texts, doc2concrete:::cleantext, stop.words=stop.words, number.words=number.words))
-
-  qtd<-quanteda::dfm(ctext,tolower=T)
 
   qNames<-colnames(qtd)
   qGap<-!(qNames%in%wordlist$Word)
@@ -34,12 +33,12 @@ concDict<-function (texts, wordlist=NULL,
 
   sSet<-wordlist$Conc.M[match(qNames, wordlist$Word)]
 
-  sProd<-apply(qtd, 1, function(x) x*sSet)
+  sProd<-as.matrix(apply(qtd, 1, function(x) x*sSet))
 
   cHits<-rowSums(as.matrix(qtd))
 
   conc<-ifelse(cHits>minwords,
-               colSums(sProd,na.rm=T)/cHits,NA)
+               colSums(sProd,na.rm=TRUE)/cHits,NA)
 
   if(fill & sum(is.na(conc))<length(conc)){
     conc[is.na(conc)]<-mean(conc,na.rm=TRUE)
