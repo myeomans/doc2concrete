@@ -57,7 +57,6 @@ data("feedback_dat")
 
 doc2concrete(feedback_dat$feedback, domain="open")
 
-hist(doc2concrete(feedback_dat$feedback, domain="open"))
 
 cor(doc2concrete(feedback_dat$feedback, domain="open"),feedback_dat$concrete)
 

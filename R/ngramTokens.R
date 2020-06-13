@@ -19,21 +19,10 @@ ngramTokens<-function(texts,
                       punct=TRUE,
                       stop.words=TRUE,
                       overlap=1,
-                      sparse=0.99,
+                      sparse=0.995,
                       verbose=FALSE,
                       vocabmatch=NULL,
                       num.mc.cores=1){
-#
-#   texts=c("nicole")
-#   wstem="all"
-# ngrams=1:3
-# language="english"
-# punct=TRUE
-# stop.words=TRUE
-# overlap=1
-# verbose=FALSE
-# vocabmatch = doc2concrete::adviceNgrams
-# num.mc.cores=1
 
   cleanertext<-unlist(parallel::mclapply(texts, cleantext, language, stop.words, punct,
                                          mc.cores = num.mc.cores))
@@ -44,7 +33,7 @@ ngramTokens<-function(texts,
     tokens<-unlist(parallel::mclapply(cleanertext, gramstem, wstem=wstem, ngrams=ngrams[ng], language=language,
                                       mc.cores= num.mc.cores))
     dgm[[ng]] <- as.matrix(quanteda::dfm(tokens))
-    if ((sparse<1)) dgm[[ng]]<-dgm[[ng]][,colMeans(dgm[[ng]]>0)>=(1-sparse)]
+    if ((sparse<1)&is.null(vocabmatch)) dgm[[ng]]<-dgm[[ng]][,colMeans(dgm[[ng]]>0)>=(1-sparse)]
     if (ng==1) dtm<-dgm[[1]]
     if ((ng>1)&(!is.null(dim(dgm[[ng]])))) dtm<-overlaps(dtm, dgm[[ng]], overlap)
 

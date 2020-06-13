@@ -5,16 +5,16 @@ This is our fourth re-submission. We have made substantial changes, based on the
 No 1: Please add a space between year and doi.
 --> (2014) <doi:10.3758/s13428-013-0403-5>
 
-RESPONSE No 1:
+RESPONSE No 1: Done! Thanks for pointing this out.
 
 No 2: Please always write TRUE and FALSE instead of T and F.
 Also never name your variables T or F.
 
-RESPONSE No 2:
+RESPONSE No 2: Good point. I believe I have replaced every instance of T or F with TRUE/FALSE, throughout the package.
 
 No 3: Please document your datasets in more detail.
 
-RESPONSE No 3:
+RESPONSE No 3: I appreciate this suggestion. I've added more description by including text from the paper in the documentation here.
 
 
 ## Version Update (0.4.5)

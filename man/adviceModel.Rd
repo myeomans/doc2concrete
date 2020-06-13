@@ -3,17 +3,17 @@
 \docType{data}
 \name{adviceModel}
 \alias{adviceModel}
-\title{Pre=trained Concreteness Detection Model for Advice}
+\title{Pre-trained Concreteness Detection Model for Advice}
 \format{
 A pre-trained glmnet model
 }
 \source{
-Yeomans (2019). Concreteness, Concretely.
+Yeomans (2020). A Concrete Application of Open Science for Natural Language Processing.
 }
 \usage{
 adviceModel
 }
 \description{
-Trained on advice datasets
+This model was pre-trained on 3289 examples of feedback on different tasks (e.g. writing a cover letter, boggle, workplace annual reviews). All of those documents were annotated by research assistants for concreteness, and this model simulates those annotations on new documents.
 }
 \keyword{datasets}

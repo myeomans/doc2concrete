@@ -5,7 +5,11 @@
 \alias{mturk_list}
 \title{Concreteness mTurk Word List}
 \format{
-A list of 39,954 words that have been hand-annotated for concreteness
+A data frame with 39,954 rows and 2 variables.
+\describe{
+  \item{Word}{character text of a word with an entry in this dictionary}
+  \item{Conc.M}{average concreteness score for that word (from 1-5)}
+}
 }
 \source{
 Brysbaert, M., Warriner, A. B., & Kuperman, V. (2014). Concreteness ratings for 40 thousand generally known English word lemmas. Behavior Research Methods, 46(3), 904-911.
@@ -14,6 +18,6 @@ Brysbaert, M., Warriner, A. B., & Kuperman, V. (2014). Concreteness ratings for 
 mturk_list
 }
 \description{
-Word list from Brysbaert, Warriner & Kuperman (2014)
+Word list from Brysbaert, Warriner & Kuperman (2014). A list of 39,954 words that have been hand-annotated by crowdsourced workers for concreteness.
 }
 \keyword{datasets}

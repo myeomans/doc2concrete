@@ -28,7 +28,7 @@ devtools::install_github("myeomans/doc2concrete")
 
 ## Usage
 
- Here, we provide a single function, `doc2concrete`, that maps operationalize models of document-level concreteness based on a survey of datasets in several domains, including advice. This package is built as an accompaniment to Yeomans (2019), which reviews existing linguistic concreteness models across several domains. This function conducts two kinds of analyses, which can be selected using the `domain` argument. 
+ Here, we provide a single function, `doc2concrete`, that maps operationalize models of document-level concreteness based on a survey of datasets in several domains, including advice. This package is built as an accompaniment to Yeomans (2020), which reviews existing linguistic concreteness models across several domains. This function conducts two kinds of analyses, which can be selected using the `domain` argument. 
 
 ### Domain-Specific Pre-Trained Concreteness Model
 
@@ -86,4 +86,4 @@ Brysbaert, M., Warriner, A. B., & Kuperman, V. (2014). Concreteness ratings for 
 
 Blunden, H., Green, P., & Gino, F. (2018). The Impersonal Touch: Improving Feedback- Giving with Interpersonal Distance. Academy of Management Proceedings, 2018(1).
 
-Yeomans, M. (2020). Concreteness, Concretely. Working Paper.
+Yeomans, M. (2020). A Concrete Application of Open Science for Natural Language Processing. Working Paper.

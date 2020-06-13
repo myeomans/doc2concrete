@@ -8,12 +8,12 @@
 A (truncated) matrix of ngram feature counts for alignment to the pre-trained advice glmnet model.
 }
 \source{
-Yeomans (2019). Concreteness, Concretely.
+Yeomans (2020). A Concrete Application of Open Science for Natural Language Processing.
 }
 \usage{
 adviceNgrams
 }
 \description{
-Pre-trained advice concreteness features
+For internal use only. This dataset demonstrates the ngram features that are used for the pre-trained adviceModel.
 }
 \keyword{datasets}

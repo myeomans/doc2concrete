@@ -5,7 +5,11 @@
 \alias{bootstrap_list}
 \title{Concreteness mTurk Word List}
 \format{
-A list of 85,942 words where concreteness was imputed using word embeddings
+A data frame with 85,942 rows and 2 variables.
+\describe{
+  \item{Word}{character text of a word with an entry in this dictionary}
+  \item{Conc.M}{predicted concreteness score for that word (from 100-700)}
+}
 }
 \source{
 #' Paetzold, G., & Specia, L. (2016, June). Inferring psycholinguistic properties of words. In Proceedings of the 2016 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (pp. 435-440).
@@ -14,6 +18,6 @@ A list of 85,942 words where concreteness was imputed using word embeddings
 bootstrap_list
 }
 \description{
-Word list from Paetzlod & Specia (2017)
+Word list from Paetzold & Specia (2016). A list of 85,942 words where concreteness was imputed using word embeddings.
 }
 \keyword{datasets}

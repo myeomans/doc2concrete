@@ -8,12 +8,12 @@
 A (truncated) matrix of ngram feature counts for alignment to the pre-trained planning glmnet model.
 }
 \source{
-Yeomans (2019). Concreteness, Concretely.
+Yeomans (2020). A Concrete Application of Open Science for Natural Language Processing.
 }
 \usage{
 planNgrams
 }
 \description{
-Pre-trained plan concreteness features
+For internal use only. This dataset demonstrates the ngram features that are used for the pre-trained planModel.
 }
 \keyword{datasets}

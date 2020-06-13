@@ -12,7 +12,7 @@ ngramTokens(
   punct = TRUE,
   stop.words = TRUE,
   overlap = 1,
-  sparse = 1,
+  sparse = 0.995,
   verbose = FALSE,
   vocabmatch = NULL,
   num.mc.cores = 1

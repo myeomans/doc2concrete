@@ -3,17 +3,17 @@
 \docType{data}
 \name{planModel}
 \alias{planModel}
-\title{Pre=trained Concreteness Detection Model for Plan-Making}
+\title{Pre-trained Concreteness Detection Model for Plan-Making}
 \format{
 A pre-trained glmnet model
 }
 \source{
-Yeomans (2019). Concreteness, Concretely.
+Yeomans (2020). A Concrete Application of Open Science for Natural Language Processing.
 }
 \usage{
 planModel
 }
 \description{
-Trained on planning datasets
+This model was pre-trained on 5,172 examples of pre-course plans from online courses at HarvardX. Each plan was annotated by research assistants for concreteness, and this model simulates those annotations on new plans.
 }
 \keyword{datasets}
