@@ -24,7 +24,9 @@ ngramTokens<-function(texts,
                       vocabmatch=NULL,
                       num.mc.cores=1){
 
-  cleanertext<-unlist(parallel::mclapply(texts, cleantext, language, stop.words, punct,
+  cleanertext<-unlist(parallel::mclapply(texts, cleantext, language=language,
+                                         stop.words=stop.words, punct=punct,
+                                         number.words=number.words,
                                          mc.cores = num.mc.cores))
 
   dgm<-lapply(ngrams, function(x) as.matrix(array(NA, c(length(texts),100))))

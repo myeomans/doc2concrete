@@ -1,3 +1,9 @@
+## Version Update (0.4.7)
+
+We caught a bug - a component function had two of its arguments reversed.
+
+
+
 ## Version Update (0.4.6)
 
 This is our fourth re-submission. We have made substantial changes, based on the previous reviewer's feedback, and we respond to each in line below:

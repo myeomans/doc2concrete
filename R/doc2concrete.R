@@ -94,8 +94,11 @@ doc2concrete<-function(texts,
     conc<-stats::predict(doc2concrete::planModel, newx = testX,
                          s="lambda.min", type="response")[,1]
   } else {
+    if(is.null(wordlist)){
+      wordlist=doc2concrete::mturk_list
+    }
     conc=concDict(texts=texts,
-                  wordlist=doc2concrete::mturk_list,
+                  wordlist=wordlist,
                   shrink=shrink,
                   fill=fill,
                   stop.words=stop.words,
