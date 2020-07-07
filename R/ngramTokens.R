@@ -6,6 +6,7 @@
 #' @param language Language for stemming. Default is "english"
 #' @param punct logical Should punctuation be kept as tokens? Default is TRUE
 #' @param stop.words logical Should stop words be kept? Default is TRUE
+#' @param number.words logical Should numbers be kept as words? Default is TRUE
 #' @param overlap numeric Threshold (as cosine distance) for including ngrams that constitute other included phrases. Default is 1 (i.e. all ngrams included).
 #' @param sparse maximum feature sparsity for inclusion (1 = include all features)
 #' @param verbose logical Should the package report token counts after each ngram level? Useful for long-running code. Default is FALSE.
@@ -18,6 +19,7 @@ ngramTokens<-function(texts,
                       language="english",
                       punct=TRUE,
                       stop.words=TRUE,
+                      number.words=TRUE,
                       overlap=1,
                       sparse=0.995,
                       verbose=FALSE,

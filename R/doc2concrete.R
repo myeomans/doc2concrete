@@ -87,8 +87,9 @@ doc2concrete<-function(texts,
                    stop.words=TRUE,
                    number.words=TRUE,
                    num.mc.cores=num.mc.cores)
-    testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3, stop.words = TRUE,sparse=1,
-                                       vocabmatch = doc2concrete::planNgrams,
+    testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3,
+                                       stop.words = TRUE,number.words = TRUE,
+                                       sparse=1, vocabmatch = doc2concrete::planNgrams,
                                        num.mc.cores=num.mc.cores),
                            bootC,brysC))
     conc<-stats::predict(doc2concrete::planModel, newx = testX,

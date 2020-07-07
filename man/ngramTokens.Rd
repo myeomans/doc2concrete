@@ -11,6 +11,7 @@ ngramTokens(
   language = "english",
   punct = TRUE,
   stop.words = TRUE,
+  number.words = TRUE,
   overlap = 1,
   sparse = 0.995,
   verbose = FALSE,
@@ -30,6 +31,8 @@ ngramTokens(
 \item{punct}{logical Should punctuation be kept as tokens? Default is TRUE}
 
 \item{stop.words}{logical Should stop words be kept? Default is TRUE}
+
+\item{number.words}{logical Should numbers be kept as words? Default is TRUE}
 
 \item{overlap}{numeric Threshold (as cosine distance) for including ngrams that constitute other included phrases. Default is 1 (i.e. all ngrams included).}
 
