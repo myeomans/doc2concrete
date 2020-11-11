@@ -11,6 +11,7 @@ utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","adviceNgra
 #' @param number.words logical Should numbers be converted to words? Default is TRUE
 #' @param shrink logical Should open-domain concreteness models regularize low-count words? Default is FALSE.
 #' @param fill logical Should empty cells be assigned the mean rating? Default is TRUE.
+#' @param uk_english logical Does the text contain any British English spelling? Including variants (e.g. Canadian). Default is FALSE
 #' @param num.mc.cores numeric number of cores for parallel processing - see parallel::detectCores(). Default is 1.
 #' @details In principle, concreteness could be measured from any english text. However, the
 #' definition and interpretation of concreteness may vary based on the domain. Here, we provide
@@ -51,10 +52,13 @@ doc2concrete<-function(texts,
                        number.words=TRUE,
                        shrink=FALSE,
                        fill=FALSE,
+                       uk_english=FALSE,
                        num.mc.cores=1){
   texts<-iconv(textclean::replace_non_ascii(texts),to="ASCII",sub=" ")
   texts[is.na(texts) | stringr::str_count(texts, "[[:alpha:]]+")==0] <- " .  "
-
+  if(uk_english){
+    message("UK english not supported yet")
+  }
   if(domain[1]=="advice"){
     bootC<-concDict(texts=texts,
                     wordlist=doc2concrete::bootstrap_list,
