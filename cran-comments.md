@@ -1,5 +1,6 @@
 ## Version Update (0.5.0)
 
+fix for number words 
 added a conversion tool for UK english spellings
 
 ## Version Update (0.4.7)
