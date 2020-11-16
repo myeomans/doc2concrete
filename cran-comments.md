@@ -1,7 +1,10 @@
+## Version Update (0.5.0)
+
+added a conversion tool for UK english spellings
+
 ## Version Update (0.4.7)
 
 We caught a bug - a component function had two of its arguments reversed.
-
 
 
 ## Version Update (0.4.6)

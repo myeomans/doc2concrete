@@ -11,8 +11,18 @@
 #' @param sparse maximum feature sparsity for inclusion (1 = include all features)
 #' @param verbose logical Should the package report token counts after each ngram level? Useful for long-running code. Default is FALSE.
 #' @param vocabmatch matrix Should the new token count matrix will be coerced to include the same tokens as a previous count matrix? Default is NULL (i.e. no token match).
+#' @param num.mc.cores numeric number of cores for parallel processing - see parallel::detectCores(). Default is 1.
+#' @details This function produces ngram featurizations of text based on the quanteda package. This provides a complement to the doc2concrete function by demonstrating
+#' How to build a feature set for training a new detection algorithm in other contexts.
+#'
+#'
 #' @return a matrix of feature counts
-#' @keywords internal
+#' @examples
+#'
+#' dim(ngramTokens(feedback_dat$feedback, ngrams=1))
+
+#' dim(ngramTokens(feedback_dat$feedback, ngrams=1:3))
+#' @export
 ngramTokens<-function(texts,
                       wstem="all",
                       ngrams=1,

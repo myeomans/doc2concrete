@@ -57,7 +57,7 @@ doc2concrete<-function(texts,
   texts<-iconv(textclean::replace_non_ascii(texts),to="ASCII",sub=" ")
   texts[is.na(texts) | stringr::str_count(texts, "[[:alpha:]]+")==0] <- " .  "
   if(uk_english){
-    message("UK english not supported yet")
+    texts<-usWords(texts)
   }
   if(domain[1]=="advice"){
     bootC<-concDict(texts=texts,

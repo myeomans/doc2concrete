@@ -12,6 +12,7 @@ doc2concrete(
   number.words = TRUE,
   shrink = FALSE,
   fill = FALSE,
+  uk_english = FALSE,
   num.mc.cores = 1
 )
 }
@@ -29,6 +30,8 @@ doc2concrete(
 \item{shrink}{logical Should open-domain concreteness models regularize low-count words? Default is FALSE.}
 
 \item{fill}{logical Should empty cells be assigned the mean rating? Default is TRUE.}
+
+\item{uk_english}{logical Does the text contain any British English spelling? Including variants (e.g. Canadian). Default is FALSE}
 
 \item{num.mc.cores}{numeric number of cores for parallel processing - see parallel::detectCores(). Default is 1.}
 }
