@@ -1,6 +1,11 @@
+## Version Update (0.5.1)
+
+Removed dependency on textclean with native function, as the package was producing unnecessary warnings. Additionally, added support for large document sets, by looping so as not to run out of memory.
+
 ## Version Update (0.5.0)
 
 fix for number words 
+
 added a conversion tool for UK english spellings
 
 ## Version Update (0.4.7)

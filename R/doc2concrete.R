@@ -47,62 +47,27 @@ utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","adviceNgra
 
 doc2concrete<-function(texts,
                        domain=c("open","advice","plans"),
-                       wordlist=NULL,
+                       wordlist=doc2concrete::mturk_list,
                        stop.words=TRUE,
                        number.words=TRUE,
                        shrink=FALSE,
                        fill=FALSE,
                        uk_english=FALSE,
                        num.mc.cores=1){
-  texts<-iconv(textclean::replace_non_ascii(texts),to="ASCII",sub=" ")
+  texts<-iconv(cleanpunct(texts),to="ASCII",sub=" ")
   texts[is.na(texts) | stringr::str_count(texts, "[[:alpha:]]+")==0] <- " .  "
   if(uk_english){
     texts<-usWords(texts)
   }
+
   if(domain[1]=="advice"){
-    bootC<-concDict(texts=texts,
-                    wordlist=doc2concrete::bootstrap_list,
-                    shrink=FALSE,
-                    stop.words=TRUE,
-                    number.words=TRUE,
-                    num.mc.cores=num.mc.cores)
-    brysC<-concDict(texts=texts,
-                    wordlist=doc2concrete::mturk_list,
-                    shrink=FALSE,
-                    stop.words=TRUE,
-                    number.words=TRUE,
-                    num.mc.cores=num.mc.cores)
-    testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3, stop.words = TRUE,sparse=1,
-                                       vocabmatch = doc2concrete::adviceNgrams,
-                                       num.mc.cores=num.mc.cores),
-                           bootC,brysC))
-    conc<-stats::predict(doc2concrete::adviceModel, newx = testX,
-                         s="lambda.min", type="response")[,1]
+    conc<-adviceModel(texts=texts,
+                num.mc.cores=num.mc.cores)
   } else if (domain[1]=="plans"){
-    bootC=concDict(texts=texts,
-                   wordlist=doc2concrete::bootstrap_list,
-                   shrink=FALSE,
-                   stop.words=TRUE,
-                   number.words=TRUE,
-                   num.mc.cores=num.mc.cores)
-    brysC=concDict(texts=texts,
-                   wordlist=doc2concrete::mturk_list,
-                   shrink=FALSE,
-                   stop.words=TRUE,
-                   number.words=TRUE,
-                   num.mc.cores=num.mc.cores)
-    testX<-as.matrix(cbind(ngramTokens(texts, ngrams=1:3,
-                                       stop.words = TRUE,number.words = TRUE,
-                                       sparse=1, vocabmatch = doc2concrete::planNgrams,
-                                       num.mc.cores=num.mc.cores),
-                           bootC,brysC))
-    conc<-stats::predict(doc2concrete::planModel, newx = testX,
-                         s="lambda.min", type="response")[,1]
+    conc<-planModel(texts=texts,
+                      num.mc.cores=num.mc.cores)
   } else {
-    if(is.null(wordlist)){
-      wordlist=doc2concrete::mturk_list
-    }
-    conc=concDict(texts=texts,
+    conc<-concDict(texts=texts,
                   wordlist=wordlist,
                   shrink=shrink,
                   fill=fill,
