@@ -24,7 +24,7 @@ utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","adviceNgra
 #' However, we still encourage researchers to train a model of concreteness in their own domain, if possible.
 #'
 #' @references
-#' Yeomans, M. (2020). Concreteness, Concretely. Working Paper.
+#' Yeomans, M. (2021). A Concrete Application of Open Science for Natural Language Processing. Organizational Behavior and Human Decision Processes, 162, 81-94.
 #'
 #' Brysbaert, M., Warriner, A. B., & Kuperman, V. (2014). Concreteness ratings for 40 thousand generally known English word lemmas. Behavior Research Methods, 46(3), 904-911.
 #'
@@ -59,21 +59,46 @@ doc2concrete<-function(texts,
   if(uk_english){
     texts<-usWords(texts)
   }
-
-  if(domain[1]=="advice"){
-    conc<-adviceModel(texts=texts,
-                num.mc.cores=num.mc.cores)
-  } else if (domain[1]=="plans"){
-    conc<-planModel(texts=texts,
+  if(length(texts)<4000){
+    if(domain[1]=="advice"){
+      conc<-adviceModel(texts=texts,
+                        num.mc.cores=num.mc.cores)
+    } else if (domain[1]=="plans"){
+      conc<-planModel(texts=texts,
                       num.mc.cores=num.mc.cores)
-  } else {
-    conc<-concDict(texts=texts,
-                  wordlist=wordlist,
-                  shrink=shrink,
-                  fill=fill,
-                  stop.words=stop.words,
-                  number.words=number.words,
-                  num.mc.cores=num.mc.cores)
+    } else {
+      conc<-concDict(texts=texts,
+                     wordlist=wordlist,
+                     shrink=shrink,
+                     fill=fill,
+                     stop.words=stop.words,
+                     number.words=number.words,
+                     num.mc.cores=num.mc.cores)
+    }
+  } else{
+    # Batched loop to minimize memory load
+    textList<-split(texts, ceiling(seq_along(texts)/2000))
+    concList<-lapply(1:length(textList),function(x) NA)
+    tpb<-utils::txtProgressBar(0,length(textList))
+    for (x in 1:length(textList)){
+      if(domain[1]=="advice"){
+        concList[[x]]<-adviceModel(texts=textList[[x]],
+                                   num.mc.cores=num.mc.cores)
+      } else if (domain[1]=="plans"){
+        concList[[x]]<-planModel(texts=textList[[x]],
+                                 num.mc.cores=num.mc.cores)
+      } else {
+        concList[[x]]<-concDict(texts=textList[[x]],
+                                wordlist=wordlist,
+                                shrink=shrink,
+                                fill=fill,
+                                stop.words=stop.words,
+                                number.words=number.words,
+                                num.mc.cores=num.mc.cores)
+      }
+      utils::setTxtProgressBar(tpb,x)
+    }
+    conc<-do.call(c,concList)
   }
   return(conc)
 }

@@ -4,7 +4,7 @@
 \alias{overlaps}
 \title{Overlap cleaner}
 \usage{
-overlaps(high, low, cutoff = 1)
+overlaps(high, low, cutoff = 1, verbose = FALSE)
 }
 \arguments{
 \item{high}{matrix Token counts that will all be kept.}

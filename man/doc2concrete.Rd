@@ -7,7 +7,7 @@
 doc2concrete(
   texts,
   domain = c("open", "advice", "plans"),
-  wordlist = NULL,
+  wordlist = doc2concrete::mturk_list,
   stop.words = TRUE,
   number.words = TRUE,
   shrink = FALSE,
@@ -66,7 +66,7 @@ cor(doc2concrete(feedback_dat$feedback, domain="open"),feedback_dat$concrete)
 
 }
 \references{
-Yeomans, M. (2020). Concreteness, Concretely. Working Paper.
+Yeomans, M. (2021). A Concrete Application of Open Science for Natural Language Processing. Organizational Behavior and Human Decision Processes, 162, 81-94.
 
 Brysbaert, M., Warriner, A. B., & Kuperman, V. (2014). Concreteness ratings for 40 thousand generally known English word lemmas. Behavior Research Methods, 46(3), 904-911.
 

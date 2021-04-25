@@ -1,6 +1,14 @@
+## Version Update (0.5.3)
+
+vignette update, handle bigger texts, more quanteda
+
+## Version Update (0.5.2)
+
+Removed dependency on textclean with native function, as the package was producing unnecessary warnings. 
+
 ## Version Update (0.5.1)
 
-Removed dependency on textclean with native function, as the package was producing unnecessary warnings. Additionally, added support for large document sets, by looping so as not to run out of memory.
+Added support for large document sets, by looping so as not to run out of memory.
 
 ## Version Update (0.5.0)
 

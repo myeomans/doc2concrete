@@ -120,12 +120,11 @@ ctxpand<-function(text){
 #' @description background function to load.
 #' @param text character vector of strings to clean.
 #' @param wstem character Which words should be stemmed? Defaults to "all".
-#' @param ngrams numeric Vector of ngram lengths to be included. Default is 1 (i.e. unigrams only).
 #' @param language Language for stemming. Default is "english".
 #' @return Sentence of stemmed words.
 #' @keywords internal
 
-gramstem<-function(text, wstem="all", ngrams=1, language="english"){
+stemmer<-function(text, wstem="all", language="english"){
   if(nchar(text)%in%c(NA,NULL,0:2)){
     return(text)
   }else{
@@ -133,38 +132,7 @@ gramstem<-function(text, wstem="all", ngrams=1, language="english"){
     xes<-xes[which(nchar(xes)>0)]
     if(length(wstem)>1) xes<-sapply(xes, function(x) stemexcept(x, wstem, language), USE.NAMES=F)
     if(wstem=="all") xes<-sapply(xes, SnowballC::wordStem, language=language, USE.NAMES=F)
-    xret<-" "
-    if (1 %in% ngrams) xret<-paste(c(xret, xes), collapse=" ")
-    if (2 %in% ngrams) xret<-paste(c(xret, ngrammer(xes, 2)), collapse=" ")
-    if (3 %in% ngrams) xret<-paste(c(xret, ngrammer(xes, 3)), collapse=" ")
-    return(xret)
-  }
-}
-
-############################################################################
-#' Phraser
-#' @description background function to load
-#' @param onewords character Vector of words to combine into phrases.
-#' @param ngram numeric Length of phrases to create.
-#' @return Sentence of stemmed ngrams.
-#' @keywords internal
-ngrammer <- function (onewords, ngram){
-  len<-length(onewords)
-  if(len<ngram){
-    return(" ")
-  }else{
-    if (ngram==1){
-      words<-onewords
-    }
-    if (ngram==2){
-      twowords<-cbind(onewords[1:(len-1)], onewords[2:len])
-      words<-apply(twowords, 1, function(x) paste0(x, collapse="_"))
-    }
-    if (ngram==3){
-      threewords<-cbind(onewords[1:(len-2)], onewords[2:(len-1)], onewords[3:len])
-      words<-apply(threewords, 1, function(x) paste0(x, collapse="_"))
-    }
-    return(paste(words, collapse=" "))
+    return(xes)
   }
 }
 
@@ -190,16 +158,39 @@ stemexcept<-function(sentence, excepts, language="english"){
 #' @param cutoff numeric Threshold (as cosine distance) for including overlapping tokens. Default is 1 (i.e. all tokens included).
 #' @return Combined token count matrix.
 #' @keywords internal
-overlaps<-function(high, low, cutoff=1){
+overlaps<-function(high, low, cutoff=1,verbose=FALSE){
+  # high=dgm[[1]]
+  # low=dgm[[1]]
+  # cutoff=.8
+  # verbose=TRUE
   if(cutoff==1){
-    combined<-cbind(as.matrix(high),as.matrix(low))
+    combined<-cbind(high,low)
   } else {
-    high<-as.matrix(high)
-    low_l<-data.frame(lapply(colnames(low),function(x) as.vector(low[,x])))
-    colnames(low_l)<-colnames(low)
-    peaks<-apply(low_l, 2, function(x) max(apply(high, 2, function(y) x %*% y / sqrt(x%*%x * y%*%y))))
-    remaining<-low_l[,peaks<=cutoff]
-    combined<-cbind(remaining,high)
+    hM=as.matrix(high)
+    keep=rep(TRUE,ncol(low))
+    xnames=unlist(colnames(low))
+    ynames=unlist(colnames(high))
+    for(x in 1:ncol(low)){
+      lV=as.vector(low[,x])
+      yflag="go"
+      y=1
+      while(yflag!="break"){
+        if(xnames[x]%in%strsplit(ynames[y],"_")[[1]]){
+          hV=as.vector(hM[,y])
+          cossim=sum(lV*hV)/(sqrt(sum(lV^2))*sqrt(sum(hV^2)))
+          if(cossim>cutoff){
+            if(verbose) message(paste(xnames[x],ynames[y]))
+            keep[x]=FALSE
+            yflag="break"
+          }
+        }
+        if(y==ncol(high)){
+          yflag="break"
+        }
+        y=y+1
+      }
+    }
+    combined<-cbind(low[,keep],high)
   }
   return(combined)
 }
@@ -232,7 +223,7 @@ doublestacker<-function (wdcts){
 #' @return Token counts matrix from new data, with column names that match the model data.
 #' @keywords internal
 vocabmatcher<-function(hole, peg){
-  peg<-doublestacker(peg)
+  peg<-doublestacker(as.matrix(peg))
   newpeg<-array(0, c(nrow(peg), ncol(hole)))
   for (i in 1:ncol(newpeg)){
     if(colnames(hole)[i] %in% colnames(peg)){

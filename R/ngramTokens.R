@@ -42,16 +42,19 @@ ngramTokens<-function(texts,
                                          mc.cores = num.mc.cores))
 
   dgm<-lapply(ngrams, function(x) as.matrix(array(NA, c(length(texts),100))))
-  token.list<-list()
+  stemtokens<-quanteda::tokens(lapply(cleanertext, stemmer,wstem=wstem,language=language))
   for (ng in 1:length(ngrams)){
-    tokens<-unlist(parallel::mclapply(cleanertext, gramstem, wstem=wstem, ngrams=ngrams[ng], language=language,
-                                      mc.cores= num.mc.cores))
-    dgm[[ng]] <- as.matrix(quanteda::dfm(tokens))
-    if ((sparse<1)&is.null(vocabmatch)) dgm[[ng]]<-dgm[[ng]][,colMeans(dgm[[ng]]>0)>=(1-sparse)]
+    if (ng==1) {
+      dgm[[ng]] <-quanteda::dfm(stemtokens)
+    }else{
+      dgm[[ng]] <- quanteda::dfm(quanteda::tokens_ngrams(stemtokens,ng))
+    }
+    if ((sparse<1)&is.null(vocabmatch)) dgm[[ng]]<-quanteda::dfm_trim(dgm[[ng]],sparsity=sparse)
     if (ng==1) dtm<-dgm[[1]]
-    if ((ng>1)&(!is.null(dim(dgm[[ng]])))) dtm<-overlaps(dtm, dgm[[ng]], overlap)
+    if ((ng>1)&(overlap<1)&(!is.null(dim(dgm[[ng]])))) dtm<-overlaps(high=dgm[[ng]],low=dtm,
+                                                                     cutoff=overlap,verbose=verbose)
 
-    if (verbose) print(paste(c(ng, dim(dtm),dim(dgm[[ng]]))))
+    if (verbose) print(paste(c(ng,"-grams ", dim(dtm)),collapse=" "))
   }
   dtm<-doublestacker(dtm)
 
