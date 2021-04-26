@@ -159,10 +159,6 @@ stemexcept<-function(sentence, excepts, language="english"){
 #' @return Combined token count matrix.
 #' @keywords internal
 overlaps<-function(high, low, cutoff=1,verbose=FALSE){
-  # high=dgm[[1]]
-  # low=dgm[[1]]
-  # cutoff=.8
-  # verbose=TRUE
   if(cutoff==1){
     combined<-cbind(high,low)
   } else {

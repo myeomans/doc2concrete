@@ -1,3 +1,7 @@
+## Version Update (0.5.4)
+
+Fixed a bug in the ngrams from last update
+
 ## Version Update (0.5.3)
 
 vignette update, handle bigger texts, more quanteda
