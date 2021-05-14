@@ -1,6 +1,6 @@
 ## Version Update (0.5.4)
 
-Fixed a bug in the ngrams from last update
+Fixed a bug in the ngrams from last update, update to new quanteda flow
 
 ## Version Update (0.5.3)
 

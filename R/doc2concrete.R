@@ -54,6 +54,7 @@ doc2concrete<-function(texts,
                        fill=FALSE,
                        uk_english=FALSE,
                        num.mc.cores=1){
+
   texts<-iconv(cleanpunct(texts),to="ASCII",sub=" ")
   texts[is.na(texts) | stringr::str_count(texts, "[[:alpha:]]+")==0] <- " .  "
   if(uk_english){

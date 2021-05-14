@@ -24,7 +24,7 @@ concDict<-function (texts, wordlist=NULL,
 
   ctext<-unlist(lapply(texts, cleantext, stop.words=stop.words, number.words=number.words))
 
-  qtd<-quanteda::dfm(ctext,tolower=TRUE)
+  qtd<-quanteda::dfm(quanteda::tokens(ctext),tolower=TRUE)
   wordlist$Word<-tolower(wordlist$Word)
 
   qNames<-colnames(qtd)
