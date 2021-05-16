@@ -1,6 +1,6 @@
 ## Version Update (0.5.4)
 
-Fixed a bug in the ngrams from last update, update to new quanteda flow
+Fixed a bug in the ngrams from last update, update to new quanteda flow, consistent name anonymising
 
 ## Version Update (0.5.3)
 

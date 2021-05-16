@@ -16,7 +16,13 @@ utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","adviceNgra
 #' @details In principle, concreteness could be measured from any english text. However, the
 #' definition and interpretation of concreteness may vary based on the domain. Here, we provide
 #' a domain-specific pre-trained classifier for concreteness in advice & feedback data, which we have
-#' empirically confirmed to be robust across a variety of contexts within that domain (Yeomans, 2020).
+#' empirically confirmed to be robust across a variety of contexts within that domain (Yeomans, 2021).
+#'
+#' The training data for the advice classifier includes both second-person (e.g. "You should") and
+#' third-person (e.g. "She should") framing, including some names (e.g. "Riley should"). For consistency,
+#' we anonymised all our training data to replace any names with "Riley". If you are working with a
+#' dataset that includes the names of advice recipients, we recommend you convert all those names to
+#' "Riley" as well, to ensure optimal performance of the algorithm (and to respect their privacy).
 #'
 #' There are many domains where such pre-training is not yet possible. Accordingly, we provide
 #' support for two off-the-shelf concreteness "dictionaries" - i.e. document-level aggregations of
