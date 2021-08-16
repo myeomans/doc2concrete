@@ -1,6 +1,10 @@
+## Version Update (0.5.5)
+
+Better handling of large datasets
+
 ## Version Update (0.5.4)
 
-Fixed a bug in the ngrams from last update, update to new quanteda flow, consistent name anonymising
+Fixed a bug in the ngrams from last update, update to new quanteda flow
 
 ## Version Update (0.5.3)
 

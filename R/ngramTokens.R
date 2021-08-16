@@ -65,5 +65,5 @@ ngramTokens<-function(texts,
   dtm<-doublestacker(dtm)
 
   if(!is.null(vocabmatch)) dtm<-vocabmatcher(vocabmatch, dtm)
-  return(dtm)
+  return(as.matrix(dtm))
 }
