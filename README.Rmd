@@ -45,6 +45,6 @@ cor.test(doc2concrete(feedback_dat$feedback,domain="advice"),
 
 ## References
 
-Yeomans, M. (2020). Concreteness, Concretely. Working Paper.
+Yeomans, M. (2021). A concrete example of construct construction in natural language. Organizational Behavior and Human Decision Processes, 162, 81-94.
 
 Brysbaert, M., Warriner, A. B., & Kuperman, V. (2014). Concreteness ratings for 40 thousand generally known English word lemmas. Behavior Research Methods, 46(3), 904-911.

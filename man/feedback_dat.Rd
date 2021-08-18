@@ -24,6 +24,7 @@ feedback_dat
 \description{
 A dataset containing responses from people on Mechanical Turk, writing
 feedback to a recent collaborator, that were then scored by other Turkers
-for feedback specificity.
+for feedback specificity. Note that all proper names of advice recipients
+have been substituted with "Riley" - we recommend the same in your data.
 }
 \keyword{datasets}
