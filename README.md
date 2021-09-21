@@ -3,6 +3,10 @@
 
 # Concreteness
 
+[![](https://www.r-pkg.org/badges/version/doc2concrete?color=blue)](https://cran.r-project.org/package=doc2concrete)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/doc2concrete?color=green)](https://cran.r-project.org/package=doc2concrete)
+[![](http://cranlogs.r-pkg.org/badges/last-month/doc2concrete?color=green)](https://cran.r-project.org/package=doc2concrete)
+
 Concreteness has long been central to psychological theories of learning
 and thinking, and increasingly has practical applications to domains
 with prevalent natural language data, like advice and plan-making.
@@ -43,19 +47,20 @@ concreteness.
 
 ``` r
 
-
 library(doc2concrete)
 
 cor.test(doc2concrete(feedback_dat$feedback,domain="open"),
     feedback_dat$concrete)
 
-cor.test(doc2concrete(feedback_dat$feedback[1:50],domain="advice"),
-         feedback_dat$concrete[1:50])
+cor.test(doc2concrete(feedback_dat$feedback,domain="advice"),
+         feedback_dat$concrete)
 ```
 
 ## References
 
-Yeomans, M. (2020). Concreteness, Concretely. Working Paper.
+Yeomans, M. (2021). A concrete example of construct construction in
+natural language. Organizational Behavior and Human Decision Processes,
+162, 81-94.
 
 Brysbaert, M., Warriner, A. B., & Kuperman, V. (2014). Concreteness
 ratings for 40 thousand generally known English word lemmas. Behavior

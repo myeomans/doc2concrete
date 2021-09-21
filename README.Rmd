@@ -14,6 +14,15 @@ knitr::opts_chunk$set(
 
 # Concreteness
 
+```{r, echo = FALSE, results='asis'}
+library(badger)
+cat(
+	badge_cran_release("doc2concrete", "blue"),
+	badge_cran_download("doc2concrete", "grand-total", "green"),
+	badge_cran_download("doc2concrete", "last-month", "green")
+)
+```
+
 Concreteness has long been central to psychological theories of learning and thinking, and increasingly has practical applications to domains with prevalent natural language data, like advice and plan-making. However, the literature provides diffuse and competing definitions of concreteness in natural language. In this package, we codify simple guidelines for automated concreteness detection within and across domains, developed from a review of existing methods in the literature.
 
 ## Installation
