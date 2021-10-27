@@ -6,7 +6,7 @@
 \usage{
 doc2concrete(
   texts,
-  domain = c("open", "advice", "plans"),
+  domain = c("open", "advice", "plans", "finance"),
   wordlist = doc2concrete::mturk_list,
   stop.words = TRUE,
   number.words = TRUE,

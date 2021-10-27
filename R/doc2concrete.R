@@ -1,4 +1,4 @@
-utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","adviceNgrams","planModel","planNgrams")) # prevent incorrect "no global binding" note
+utils::globalVariables(c("mturk_list","bootstrap_list","finance_list","adviceModel","adviceNgrams","planModel","planNgrams")) # prevent incorrect "no global binding" note
 
 #' Concreteness Scores
 #'
@@ -52,7 +52,7 @@ utils::globalVariables(c("mturk_list","bootstrap_list","adviceModel","adviceNgra
 #'@export
 
 doc2concrete<-function(texts,
-                       domain=c("open","advice","plans"),
+                       domain=c("open","advice","plans","finance"),
                        wordlist=doc2concrete::mturk_list,
                        stop.words=TRUE,
                        number.words=TRUE,
@@ -73,7 +73,15 @@ doc2concrete<-function(texts,
     } else if (domain[1]=="plans"){
       conc<-planModel(texts=texts,
                       num.mc.cores=num.mc.cores)
-    } else {
+    } else if (domain[1]=="finance"){
+      conc<-concDict(texts=texts,
+                     wordlist=doc2concrete::finance_list,
+                     shrink=shrink,
+                     fill=fill,
+                     stop.words=FALSE,
+                     number.words=FALSE,
+                     num.mc.cores=num.mc.cores)
+    }else {
       conc<-concDict(texts=texts,
                      wordlist=wordlist,
                      shrink=shrink,

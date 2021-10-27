@@ -24,6 +24,19 @@
 #'
 "bootstrap_list"
 
+#' Concreteness Finance Word List
+#'
+#' The mTUrk-annotated list, with the 1,000 most common words re-annotated by finance professionals as an in-domain dictionary.
+#'
+#' @format A data frame with 40,004 rows and 2 variables.
+#' \describe{
+#'   \item{Word}{character text of a word with an entry in this dictionary}
+#'   \item{Conc.M}{average concreteness score for that word (from 1-5)}
+#' }
+#' @source Reyt & Yeomans (working paper)
+#'
+"finance_list"
+
 #' Personal Feedback Dataset
 #'
 #' A dataset containing responses from people on Mechanical Turk, writing
