@@ -12,6 +12,7 @@ ngramTokens(
   punct = TRUE,
   stop.words = TRUE,
   number.words = TRUE,
+  per.100 = FALSE,
   overlap = 1,
   sparse = 0.995,
   verbose = FALSE,
@@ -33,6 +34,8 @@ ngramTokens(
 \item{stop.words}{logical Should stop words be kept? Default is TRUE}
 
 \item{number.words}{logical Should numbers be kept as words? Default is TRUE}
+
+\item{per.100}{logical Should counts be expressed as frequency per 100 words? Default is FALSE}
 
 \item{overlap}{numeric Threshold (as cosine distance) for including ngrams that constitute other included phrases. Default is 1 (i.e. all ngrams included).}
 

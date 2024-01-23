@@ -1,7 +1,11 @@
+# Version Update (0.6.0)
+
+unicode escapes, removed finance placeholder
+ 
 # Version Update (0.5.6)
 
 New model for finance
-
+ 
 # Version Update (0.5.5)
 
 Better handling of large datasets

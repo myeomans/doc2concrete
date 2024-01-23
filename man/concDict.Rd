@@ -16,6 +16,8 @@ concDict(
 )
 }
 \arguments{
+\item{texts}{character Vector of documents to classify}
+
 \item{wordlist}{Dictionary to be used.}
 
 \item{stop.words}{logical should stop words be kept? default is TRUE}
@@ -29,8 +31,6 @@ concDict(
 \item{minwords}{numeric all documents with less words than this return NA. default is 0 (i.e. keep all documents)}
 
 \item{num.mc.cores}{numeric number of cores for parallel processing - see parallel::detectCores()}
-
-\item{text}{character Vector of documents to classify}
 }
 \value{
 concreteness score for each document

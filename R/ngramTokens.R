@@ -7,6 +7,7 @@
 #' @param punct logical Should punctuation be kept as tokens? Default is TRUE
 #' @param stop.words logical Should stop words be kept? Default is TRUE
 #' @param number.words logical Should numbers be kept as words? Default is TRUE
+#' @param per.100 logical Should counts be expressed as frequency per 100 words? Default is FALSE
 #' @param overlap numeric Threshold (as cosine distance) for including ngrams that constitute other included phrases. Default is 1 (i.e. all ngrams included).
 #' @param sparse maximum feature sparsity for inclusion (1 = include all features)
 #' @param verbose logical Should the package report token counts after each ngram level? Useful for long-running code. Default is FALSE.
@@ -30,6 +31,7 @@ ngramTokens<-function(texts,
                       punct=TRUE,
                       stop.words=TRUE,
                       number.words=TRUE,
+                      per.100=FALSE,
                       overlap=1,
                       sparse=0.995,
                       verbose=FALSE,
@@ -63,7 +65,10 @@ ngramTokens<-function(texts,
     if (verbose) print(paste(c(ng,"-grams ", dim(dtm)),collapse=" "))
   }
   dtm<-doublestacker(dtm)
-
   if(!is.null(vocabmatch)) dtm<-vocabmatcher(vocabmatch, dtm)
+  if(per.100){
+    wdcts<-stringr::str_count(texts,"[[:alpha:]]+")
+    dtm<-apply(dtm,2,function(x) 100*x/wdcts)
+  }
   return(as.matrix(dtm))
 }

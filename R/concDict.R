@@ -1,6 +1,6 @@
 #' Open-Domain Concreteness Dictionaries
 #' @description background function to load
-#' @param text character Vector of documents to classify
+#' @param texts character Vector of documents to classify
 #' @param wordlist Dictionary to be used.
 #' @param stop.words logical should stop words be kept? default is TRUE
 #' @param number.words logical should numbers be converted to words? default is TRUE
