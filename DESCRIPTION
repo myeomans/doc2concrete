@@ -8,6 +8,7 @@ Description: Models for detecting concreteness in natural language. This package
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+URL: https://github.com/myeomans/doc2concrete
 Depends: R (>= 3.5.0)
 Imports:
     tm,
